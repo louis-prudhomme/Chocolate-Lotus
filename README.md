@@ -1,24 +1,21 @@
-# first-app
+# App goal
 
-## Project setup
-```
-npm install
-```
+Our Vue application uses the [MTG API](https://docs.magicthegathering.io/) to display Magic The Gathering cards and decks.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Our app allows users to search and see Magic cards and build decks with them.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+# Functionalities
 
-### Lints and fixes files
-```
-npm run lint
-```
+|     Functionality     |   Priority   |    Date    |
+| :-------------------: | :----------: | :--------: |
+|      Search card      |  Must have   | 2020-04-14 |
+|     Display card      |  Must have   | 2020-04-14 |
+|      Build deck       |  Must have   | 2020-04-17 |
+|     Display deck      |  Must have   | 2020-04-17 |
+|  Display deck stats   | Should have  | 2020-04-18 |
+|  Save deck (session)  | Should have  | 2020-04-20 |
+|    Gallery of Art     | Should have  | 2020-04-20 |
+|    Project visuals    | Nice to have | 2020-04-12 |
+|   Run in production   | Nice to have | 2020-04-12 |
+| Save deck through URL | Nice to have | 2020-04-23 |
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
