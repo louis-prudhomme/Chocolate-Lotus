@@ -143,7 +143,9 @@ If you want aliases to spend less time typing in your console and more in your I
 The file is located in `fronty/tools/git_aliases` ; to add it in your bash, use the following command at the root of the project :
 
 ```bash
-cp ./tools/git_aliases ~/.git_aliases && echo "[ -f ~/.git_aliases ] && . ~/.git_aliases" >> ~/.bashrc && source ~/.bashrc
+cp ./tools/git_aliases ~/.git_aliases && \
+echo "[ -f ~/.git_aliases ] && . ~/.git_aliases" >> ~/.bashrc && \
+source ~/.bashrc
 ```
 
 All set ! Test it by using `Gst`, for instance.
