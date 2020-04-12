@@ -88,3 +88,62 @@ Refactored cake serving component to use new cake baking process
 ```
 
 Those lines should be relatively short (~100 characters, max).
+
+## Git commands
+
+Here is a handful of useful git commands :
+
+|            Command             |                          Effect                          |
+| :----------------------------: | :------------------------------------------------------: |
+|        `git add <file>`        |           Stages a file in the pending commit            |
+|          `git commit`          |                Commits every staged file                 |
+|           `git push`           |      Sends local commits against the current branch      |
+|           `git pull`           |              Gets every remote commits made              |
+|    `git checkout <branch>`     |            Changes current branch to `branch`            |
+| `git checkout -b <new-branch>` |      Creates new branch `branch` and switches to it      |
+|      `git merge <branch>`      |         Merges `branch` into the current branch          |
+|          `git status`          |         Shows the state of the local repository          |
+|     `git clone <git-url>`      |    Clones the repository located at `git-url` locally    |
+|       `git reset --hard`       |       Resets your local repository to last commit        |
+|       `git diff [file]`        | Displays changes between current version and last commit |
+
+To change a file, the «standard» workflow would be :
+1. `git pull`
+1. `git add folder/my-changed.file`
+1. `git commit`
+1. `git push`
+
+The standard workflow for a branch would be :
+1. `git pull`
+1. `git checkout -b my-new-branch`
+1. *do stuff and commit it*
+1. `git checkout master`
+1. `git merge my-new-branch`
+1. `git push`
+
+## Git aliases
+
+If you want aliases to spend less time typing in your console and more in your IDE, here is a list of aliases :
+
+| Alias |       Original command        |
+| :---: | :---------------------------: |
+| `Gal` | `git add --all && git status` |
+| `Gad` |           `git add`           |
+| `Gco` |         `git commit`          |
+| `Gps` |          `git push`           |
+| `Gpl` |          `git pull`           |
+| `Gck` |        `git checkout`         |
+| `Gbr` |       `git checkout -b`       |
+| `Gst` |         `git status`          |
+| `Grs` |      `git reset --hard`       |
+| `Gmr` |          `git merge`          |
+| `Gac` | `git add --all && git commit` |
+| `Gff` |          `git diff`           |
+
+The file is located in `fronty/tools/git_aliases` ; to add it in your bash, use the following command at the root of the project :
+
+```bash
+cp ./tools/git_aliases ~/.git_aliases && echo "[ -f ~/.git_aliases ] && . ~/.git_aliases" >> ~/.bashrc && source ~/.bashrc
+```
+
+All set ! Test it by using `Gst`, for instance.
