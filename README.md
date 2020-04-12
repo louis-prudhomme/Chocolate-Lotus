@@ -4,6 +4,11 @@ Our Vue application uses the [MTG API](https://docs.magicthegathering.io/) to di
 
 Our app allows users to search and see Magic cards and build decks with them.
 
+# Project preview 
+
+[MTG API](https://www.figma.com/file/P8XomF5D1JtZnmoZErAW6b/Fronty?node-id=16%3A151)
+
+
 # Functionalities
 
 |     Functionality     |    Priority    |    Date    |
