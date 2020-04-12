@@ -18,6 +18,7 @@ Our app allows users to search and see Magic cards and build decks with them.
 |    Project visuals    | Nice to have | 2020-04-12 |
 |   Run in production   | Nice to have | 2020-04-12 |
 | Save deck through URL | Nice to have | 2020-04-23 |
+| Save deck through URL |  Dark theme  | 2020-04-23 |
 
 # Workflow
 
@@ -37,6 +38,8 @@ Development branches names **must** look like `dev_<functionality-name>`, where 
 - the prefix `dev_` never changes
 - `<functionality-name>` is the name of the functionnality where words are separated by `-`
 
+As such, when you start coding something, create a `dev_somethin-you-code` branch. Then code and commit against it. Finally, when the thing is ready for production, merge your branch in `master`.
+
 ## Ticketting
 
 Every commit **must** be linked to a ticket.
@@ -48,6 +51,14 @@ The Trello is [here](https://trello.com/b/SypsBzSt) ; ideally, every ticket shou
 **Never** commit without testing, even for a comment.
 
 Always check if the project compiles and if the main functions plus what you just did works at least as well as it did before.
+
+## Fix branches
+
+When fixing a big problem, a branch **must** be created.
+
+Although the previous rule should offer protection against big bugs, shit happens. Would a big problem arise after merging into master, a fix branch should be created. 
+
+It should be named as `fix_<broken-thing>`.
 
 # Recommandations
 
