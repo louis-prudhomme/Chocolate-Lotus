@@ -130,20 +130,21 @@ The standard workflow for a branch would be :
 
 If you want aliases to spend less time typing in your console and more in your IDE, here is a list of aliases :
 
-| Alias |       Original command        |
-| :---: | :---------------------------: |
-| `Gal` | `git add --all && git status` |
-| `Gad` |           `git add`           |
-| `Gco` |         `git commit`          |
-| `Gps` |          `git push`           |
-| `Gpl` |          `git pull`           |
-| `Gck` |        `git checkout`         |
-| `Gbr` |       `git checkout -b`       |
-| `Gst` |         `git status`          |
-| `Grs` |      `git reset --hard`       |
-| `Gmr` |          `git merge`          |
-| `Gac` | `git add --all && git commit` |
-| `Gff` |          `git diff`           |
+| Alias |            Original command             |
+| :---: | :-------------------------------------: |
+| `Gal` |      `git add --all && git status`      |
+| `Gad` |                `git add`                |
+| `Gco` |              `git commit`               |
+| `Gps` |               `git push`                |
+| `Gpl` |               `git pull`                |
+| `Gck` |             `git checkout`              |
+| `Gbr` |            `git checkout -b`            |
+| `Gst` |              `git status`               |
+| `Grs` |           `git reset --hard`            |
+| `Gmr` |               `git merge`               |
+| `Gac` |      `git add --all && git commit`      |
+| `Gff` |               `git diff`                |
+| `Glo` | *too long* Displays branches in console |
 
 The file is located in `fronty/tools/git_aliases` ; to add it in your bash, use the following command at the root of the project :
 
