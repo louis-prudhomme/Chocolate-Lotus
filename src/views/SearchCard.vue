@@ -61,7 +61,8 @@
         <Card
           v-for="card in cards"
           :key="card.id"
-          :card="card"/>
+          :card="card"
+          v-on:card-chosen="onCardChosen"/>
       </v-row>
     </v-container>
   </div>
@@ -69,16 +70,18 @@
 
 <script>
 import Card from '@/components/Card.vue'
+import router from '@/router'
+
 const mtg = require('mtgsdk')
 
 export default {
   name: 'SearchCard',
-
   data: () => ({
     cards: [],
     query: '',
     queried: false, // has a search been made before ?
-    loading: false // is the card grid loading ?
+    loading: false, // is the card grid loading ?
+    chosenCard: Object
   }),
   methods: {
     async search () {
@@ -90,6 +93,10 @@ export default {
           this.cards = cards
         })
         .catch(error => error)
+    },
+    onCardChosen (card) {
+      this.chosenCard = card
+      router.push({ name: 'Display', params: { card: card } })
     }
   },
   components: {

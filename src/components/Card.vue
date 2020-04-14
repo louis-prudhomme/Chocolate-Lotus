@@ -2,7 +2,8 @@
     <v-col cols="12" sm="6" md="4" lg="3">
         <v-card
         height="100%"
-        raised>
+        raised
+        @click="$emit('card-chosen', card)">
             <v-img
             class="white--text align-end"
             :src="card.imageUrl"
