@@ -14,7 +14,7 @@
     </v-form>
     <v-container>
       <v-row>
-        <Card v-for="card in cards" :key="card.id" :card="card"/>
+        <Card v-for="card in cards" :key="card.id" :card="card" v-on:card-chosen="onCardChosen"/>
       </v-row>
     </v-container>
   </div>
@@ -22,20 +22,26 @@
 
 <script>
 import Card from '@/components/Card.vue'
+import router from '@/router'
+
 const mtg = require('mtgsdk')
 
 export default {
   name: 'SearchCard',
-
   data: () => ({
     cards: [],
-    query: ''
+    query: '',
+    chosenCard: Object
   }),
   methods: {
     async search () {
       mtg.card.where({ name: this.query })
         .then(cards => { this.cards = cards })
         .catch(error => error)
+    },
+    onCardChosen (card) {
+      this.chosenCard = card
+      router.push({ name: 'Display', params: { card: card } })
     }
   },
   components: {

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import About from '@/views/About.vue'
 import Search from '@/views/SearchCard.vue'
+import Display from '@/views/DisplayCard.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,12 @@ const routes = [
     path: '/search',
     name: 'Search',
     component: Search
+  },
+  {
+    path: '/display/:cardId',
+    name: 'Display',
+    component: Display,
+    props: true
   }
 ]
 
