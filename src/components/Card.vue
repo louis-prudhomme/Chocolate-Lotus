@@ -6,7 +6,8 @@
         height="100%">
             <v-img
             class="white--text align-end"
-            :src="card.imageUrl"/>
+            :src="card.imageUrl"
+            height="200px"/>
             <v-card-title>{{ card.name }}</v-card-title>
             <v-card-subtitle>{{ card.type }}</v-card-subtitle>
             <v-card-text>{{ card.set }}</v-card-text>
