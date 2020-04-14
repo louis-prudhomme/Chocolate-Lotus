@@ -22,7 +22,10 @@
       align-content="center"
       class="text-center">
         <v-col cols="12">
-          <h1>No results.</h1>
+          <h1>No luck !</h1>
+        </v-col>
+        <v-col cols="12">
+          <h2>Maybe next time ?</h2>
         </v-col>
         <v-col cols="12">
           <h1>¯\_(ツ)_/¯</h1>
