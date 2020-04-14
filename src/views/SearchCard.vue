@@ -17,6 +17,35 @@
       </v-container>
     </v-form>
     <v-container>
+      <v-row
+      v-if="!cards.length && queried"
+      align-content="center"
+      class="text-center">
+        <v-col cols="12">
+          <h1>No results.</h1>
+        </v-col>
+        <v-col cols="12">
+          <h1>¯\_(ツ)_/¯</h1>
+        </v-col>
+      </v-row>
+
+      <v-row
+      v-if="loading"
+      class="text-center">
+        <v-col cols="12">
+          <v-progress-circular
+          color="primary"
+          indeterminate
+          size="128"/>
+          <v-col cols="12">
+            <h1>The magic is loading…</h1>
+          </v-col>
+          <v-col cols="12">
+            <h2>(it usually take a little time)</h2>
+          </v-col>
+        </v-col>
+      </v-row>
+
       <v-row>
         <Card
           v-for="card in cards"
@@ -36,12 +65,19 @@ export default {
 
   data: () => ({
     cards: [],
-    query: ''
+    query: '',
+    queried: false,
+    loading: false
   }),
   methods: {
     async search () {
+      this.loading = true
       mtg.card.where({ name: this.query })
-        .then(cards => { this.cards = cards })
+        .then(cards => {
+          this.loading = false
+          this.queried = true
+          this.cards = cards
+        })
         .catch(error => error)
     }
   },
