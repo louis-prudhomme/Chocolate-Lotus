@@ -7,21 +7,19 @@
     >
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
+          alt="Chocolate Lotus Logo"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="@/assets/lotus.png"
           transition="scale-transition"
-          width="40"
+          width="80"
         />
 
         <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
+          alt="Chocolate Lotus Name"
           contain
           min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
+          src="@/assets/name.png"
+          width="250"
         />
       </div>
     </v-app-bar>
