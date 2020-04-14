@@ -20,22 +20,6 @@
 
     <!-- Results display -->
     <v-container>
-      <!-- No results -->
-      <v-row
-      v-if="!cards.length && queried"
-      align-content="center"
-      class="text-center">
-        <v-col cols="12">
-          <h1>No luck !</h1>
-        </v-col>
-        <v-col cols="12">
-          <h2>Maybe next time ?</h2>
-        </v-col>
-        <v-col cols="12">
-          <h1>¯\_(ツ)_/¯</h1>
-        </v-col>
-      </v-row>
-
       <!-- Loading spinner -->
       <v-row
       v-if="loading"
@@ -51,6 +35,22 @@
           <v-col cols="12">
             <h2>(it usually take a little time)</h2>
           </v-col>
+        </v-col>
+      </v-row>
+
+      <!-- No results -->
+      <v-row
+      v-if="!cards.length && queried && !loading"
+      align-content="center"
+      class="text-center">
+        <v-col cols="12">
+          <h1>No luck !</h1>
+        </v-col>
+        <v-col cols="12">
+          <h2>Maybe next time ?</h2>
+        </v-col>
+        <v-col cols="12">
+          <h1>¯\_(ツ)_/¯</h1>
         </v-col>
       </v-row>
 
