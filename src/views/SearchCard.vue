@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Search bar -->
     <v-form @submit.prevent="search">
       <v-container>
         <v-row align="center"
@@ -16,7 +17,10 @@
         </v-row>
       </v-container>
     </v-form>
+
+    <!-- Results display -->
     <v-container>
+      <!-- No results -->
       <v-row
       v-if="!cards.length && queried"
       align-content="center"
@@ -32,6 +36,7 @@
         </v-col>
       </v-row>
 
+      <!-- Loading spinner -->
       <v-row
       v-if="loading"
       class="text-center">
@@ -49,6 +54,7 @@
         </v-col>
       </v-row>
 
+      <!-- Card grid -->
       <v-row>
         <Card
           v-for="card in cards"
@@ -69,8 +75,8 @@ export default {
   data: () => ({
     cards: [],
     query: '',
-    queried: false,
-    loading: false
+    queried: false, // has a search been made before ?
+    loading: false // is the card grid loading ?
   }),
   methods: {
     async search () {
