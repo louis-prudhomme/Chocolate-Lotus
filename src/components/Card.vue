@@ -1,10 +1,15 @@
 <template>
-    <v-col xs4 sm3 md2 lg1 align-content-center align-center>
-        <v-card>
+    <v-col cols="12" sm="6" md="4" lg="3">
+        <v-card
+        align-content="center"
+        align="center"
+        height="100%">
+            <v-img
+            class="white--text align-end"
+            :src="card.imageUrl"/>
             <v-card-title>{{ card.name }}</v-card-title>
-            <p>{{ card.set }}</p>
-            <p>{{ card.type }}</p>
-            <img :src="card.imageUrl"/>
+            <v-card-subtitle>{{ card.type }}</v-card-subtitle>
+            <v-card-text>{{ card.set }}</v-card-text>
         </v-card>
     </v-col>
 </template>
