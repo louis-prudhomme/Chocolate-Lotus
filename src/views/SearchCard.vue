@@ -8,6 +8,8 @@
             <v-col cols="12" sm="9" md="10">
                 <v-text-field
                 v-model="query"
+                clearable
+                autofocus
                 label="Search a card here"/>
             </v-col>
             <v-col cols="12" sm="3" md="2">
