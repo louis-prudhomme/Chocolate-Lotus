@@ -1,8 +1,6 @@
 <template>
     <v-col cols="12" sm="6" md="4" lg="3">
         <v-card
-        align-content="center"
-        align="center"
         height="100%"
         raised>
             <v-img
@@ -21,9 +19,13 @@
                     </v-row>
                 </template>
             </v-img>
-            <v-card-title>{{ card.name }}</v-card-title>
+            <v-card-title>
+                {{ card.name }}
+                <v-spacer/>
+                <span>{{ card.set }}</span>
+            </v-card-title>
             <v-card-subtitle>{{ card.type }}</v-card-subtitle>
-            <v-card-text>{{ card.set }}</v-card-text>
+            <v-card-text></v-card-text>
         </v-card>
     </v-col>
 </template>
