@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-form @submit.prevent="search">
-      <v-container >
-        <v-row>
-            <v-col cols="12" xs12 md10>
-                <v-text-field label="Search a card here"/>
+      <v-container>
+        <v-row align="center" class="text-center">
+            <v-col cols="12" sm="9" md="10">
+                <v-text-field label="Search a card here" @submit.prevent="search"/>
             </v-col>
-            <v-col cols="12" xs12 md2>
+            <v-col cols="12" sm="3" md="2">
               <v-btn color="primary" v-model="query" @click="search">Search !</v-btn>
             </v-col>
         </v-row>
@@ -14,7 +14,10 @@
     </v-form>
     <v-container>
       <v-row>
-        <Card v-for="card in cards" :key="card.id" :card="card"/>
+        <Card
+          v-for="card in cards"
+          :key="card.id"
+          :card="card"/>
       </v-row>
     </v-container>
   </div>
