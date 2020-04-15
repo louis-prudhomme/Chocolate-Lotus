@@ -35,7 +35,6 @@
     <h1>Description: </h1>
     <p>{{card.text}}</p>
     <h1>Rules: </h1>
-
     <v-timeline dense clipped>
     <v-timeline-item
       color="grey lighten-2"

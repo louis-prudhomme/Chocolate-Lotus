@@ -23,8 +23,54 @@
         />
       </div>
     </v-app-bar>
-
     <v-content>
+      <div>
+        <template>
+          <v-navigation-drawer
+            absolute
+            permanent
+            expand-on-hover
+            right
+          >
+          <v-list
+            nav
+            dense
+          >
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>mdi-flower</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title @click="$router.push('/')">Home</v-list-item-title>
+            </v-list-item>
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>mdi-folder</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Mes Decks</v-list-item-title>
+            </v-list-item>
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>mdi-image</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Ma galerie</v-list-item-title>
+            </v-list-item>
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>mdi-star</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Mes favoris </v-list-item-title>
+            </v-list-item>
+            <v-btn
+              :class="!$vuetify.theme.dark ? 'yellow--text' : '' "
+              icon
+              @click="$vuetify.theme.dark = !$vuetify.theme.dark"
+            >
+            <v-icon>mdi-lightbulb</v-icon>
+            </v-btn>
+          </v-list>
+        </v-navigation-drawer>
+    </template>
+  </div>
       <router-view/>
     </v-content>
   </v-app>
