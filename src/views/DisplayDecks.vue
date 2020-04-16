@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'DecksDisplay',
+  name: 'DisplayDecks',
   mounted () {
     if (localStorage.getItem('decks') !== null) {
       this.decks = JSON.parse(localStorage.getItem('decks'))
