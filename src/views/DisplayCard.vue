@@ -94,7 +94,6 @@ export default {
     card: Object
   },
   mounted () {
-    localStorage.removeItem('decks')
     if (localStorage.getItem('decks') !== null) {
       this.decks = JSON.parse(localStorage.getItem('decks'))
     }
