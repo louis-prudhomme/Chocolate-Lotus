@@ -46,7 +46,7 @@
               <v-list-item-icon>
                 <v-icon>mdi-folder</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>Mes Decks</v-list-item-title>
+              <v-list-item-title @click="$router.push('/decks')">Mes Decks</v-list-item-title>
             </v-list-item>
             <v-list-item link>
               <v-list-item-icon>

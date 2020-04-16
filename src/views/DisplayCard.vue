@@ -67,7 +67,7 @@
         <v-card-text style="height: 300px;">
           <v-checkbox
             v-for="n in this.decks"
-            v-bind:key="n.toString()"
+            v-bind:key="n.name.toString()"
             v-model="checkedDeck"
             :label="`${n.name.toString()}`"
             :value="`${n.name.toString()}`"
@@ -131,7 +131,7 @@ export default {
       }
       if (this.checkedDeck.length > 0) {
         this.checkedDeck.forEach(elementChecked => this.decks.find((el) => el.name === elementChecked).idCards.push(this.card.id))
-        alert(this.decks[0].idCards)
+        this.saveDeck()
       }
     },
     saveDeck () {
