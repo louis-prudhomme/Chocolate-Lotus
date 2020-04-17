@@ -56,38 +56,39 @@
         <h1>Rules</h1>
       </v-col>
       <v-col cols="12">
-      <v-timeline>
-        <v-timeline-item
-        color="primary"
-        fill-dot
-        v-for="rule in card.rulings" v-bind:key="rule.date + rule.text.length">
-          <v-card width="700">
-            <v-card-title class="primary">
-              <h2 class="display-1 white--text font-weight-light">{{ rule.date }}</h2>
-            </v-card-title>
-            <v-container>
-              <v-row>
-                <v-icon size="50">mdi-calendar-text</v-icon>
-                <v-col cols="12" md="10">
-                  <p>{{ rule.text }}</p>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card>
-        </v-timeline-item>
-      </v-timeline>
+        <v-timeline>
+          <v-timeline-item
+          color="primary"
+          fill-dot
+          v-for="rule in card.rulings" v-bind:key="rule.date + rule.text.length">
+            <v-card width="700">
+              <v-card-title class="primary">
+                <h2 class="display-1 white--text font-weight-light">{{ rule.date }}</h2>
+              </v-card-title>
+              <v-container>
+                <v-row>
+                  <v-icon size="50">mdi-calendar-text</v-icon>
+                  <v-col cols="12" md="10">
+                    <p>{{ rule.text }}</p>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card>
+          </v-timeline-item>
+        </v-timeline>
       </v-col>
     </v-row>
 
     <v-btn
     absolute
-    style="margin-bottom: 50px"
+    style="margin-top: 50px"
     dark
     fab
-    bottom
+    top
     big
     right
-    color="primary">
+    color="primary"
+    @click="initDeckDialog(card)">
       <v-icon>mdi-plus</v-icon>
     </v-btn>
   </v-container>
