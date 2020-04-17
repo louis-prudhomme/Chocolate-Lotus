@@ -19,9 +19,7 @@
         </v-row>
       </v-container>
     </v-form>
-
-    <!-- Results display -->
-    <v-container>
+    <div>
       <!-- Loading spinner -->
       <v-row
       v-if="loading"
@@ -56,21 +54,13 @@
         </v-col>
       </v-row>
 
-      <!-- Card grid -->
-      <v-row>
-        <Card
-          v-for="card in cards"
-          :key="card.id"
-          :card="card"
-          v-on:card-chosen="onCardChosen"/>
-      </v-row>
-    </v-container>
+      <CardGrid :cards="cards"/>
+    </div>
   </div>
 </template>
 
 <script>
-import Card from '@/components/Card.vue'
-import router from '@/router'
+import CardGrid from '@/components/CardGrid.vue'
 
 const mtg = require('mtgsdk')
 
@@ -80,8 +70,7 @@ export default {
     cards: [],
     query: '',
     queried: false, // has a search been made before ?
-    loading: false, // is the card grid loading ?
-    chosenCard: Object
+    loading: false // is the card grid loading ?
   }),
   methods: {
     async search () {
@@ -93,14 +82,10 @@ export default {
           this.cards = cards
         })
         .catch(error => error)
-    },
-    onCardChosen (card) {
-      this.chosenCard = card
-      router.push({ name: 'Display', params: { card: card } })
     }
   },
   components: {
-    Card
+    CardGrid
   }
 }
 </script>
