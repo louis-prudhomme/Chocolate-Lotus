@@ -1,52 +1,68 @@
 <template>
-  <div>
-    <v-card>
-      <v-row>
-        <v-col cols="4">
-          <v-img
-          height="100%"
-          :src="card.imageUrl"/>
-        </v-col>
-        <v-col>
-          <v-simple-table>
-            <template v-slot:default>
-              <tbody>
-                <tr>
-                  <td>Title </td>
-                  <td>{{ card.name }}</td>
-                </tr>
-                <tr>
-                  <td>Color </td>
-                  <td v-for="row in card.colors" v-bind:key="row"> <img :src="getColor(row)" v-bind:alt="row" height="30" width="30"/> </td>
-                </tr>
-                <tr>
-                  <td>Type</td>
-                  <td>{{ card.type }}</td>
-                </tr>
-                <tr>
-                  <td>Mana cost</td>
-                  <td>{{ card.manaCost }}</td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
-        </v-col>
-      </v-row>
-    </v-card>
-    <v-row>
-      <h1>Description: </h1>
-      <p>{{ card.text }}</p>
+  <v-container>
+    <v-row justify="center">
+      <v-card>
+        <v-container>
+          <v-row align="center">
+            <v-col cols="12" md="6">
+              <v-img
+              height="100%"
+              :src="card.imageUrl"/>
+            </v-col>
+            <v-col cols="12" md="6">
+              <v-simple-table>
+                <tbody>
+                  <tr>
+                    <td>Title</td>
+                    <td>{{ card.name }}</td>
+                  </tr>
+                  <tr>
+                    <td>Color</td>
+                    <td v-for="row in card.colors" v-bind:key="row">
+                      <img
+                      :src="getColor(row)"
+                      v-bind:alt="row"
+                      height="30"
+                      width="30"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Type</td>
+                    <td>{{ card.type }}</td>
+                  </tr>
+                  <tr>
+                    <td>Mana cost</td>
+                    <td>{{ card.manaCost }}</td>
+                  </tr>
+                </tbody>
+              </v-simple-table>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
     </v-row>
-    <v-row>
-      <h1>Rules: </h1>
-      <v-timeline dense clipped>
+
+    <v-row class="text-center" align="center">
+      <v-col cols="12">
+        <h1>Description</h1>
+      </v-col>
+      <v-col cols="12">
+        <p>{{ card.text }}</p>
+      </v-col>
+    </v-row>
+
+    <v-row class="text-center" align="center">
+      <v-col cols="12">
+        <h1>Rules</h1>
+      </v-col>
+      <v-col cols="12">
+      <v-timeline>
         <v-timeline-item
-        color="grey lighten-2"
+        color="primary"
         fill-dot
-        right
-        v-for="rule in card.rulings" v-bind:key="rule">
+        v-for="rule in card.rulings" v-bind:key="rule.date + rule.text.length">
           <v-card width="700">
-            <v-card-title class="grey lighten-2">
+            <v-card-title class="primary">
               <h2 class="display-1 white--text font-weight-light">{{ rule.date }}</h2>
             </v-card-title>
             <v-container>
@@ -60,11 +76,21 @@
           </v-card>
         </v-timeline-item>
       </v-timeline>
+      </v-col>
     </v-row>
-    <v-btn color="primary"
+
+    <v-btn
+    absolute
+    style="margin-bottom: 50px"
     dark
-    @click="initDeckDialog(card)">Add to deck</v-btn>
-  </div>
+    fab
+    bottom
+    big
+    right
+    color="primary">
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
+  </v-container>
 </template>
 
 <script>
