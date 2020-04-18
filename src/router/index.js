@@ -5,6 +5,7 @@ import SearchCard from '@/views/SearchCard.vue'
 import Display from '@/views/DisplayCard.vue'
 import Decks from '@/views/DisplayDecks.vue'
 import Deck from '@/views/DisplayDeck.vue'
+
 Vue.use(VueRouter)
 
 const routes = [

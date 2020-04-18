@@ -1,46 +1,35 @@
 <template>
-    <div>
-        <template>
-            <v-row>
-                <v-card
-                    class="mx-auto"
-                    max-width="400"
-                    v-for="n in this.decks"
-                    v-bind:key="n.name.toString()"
-                    @click="onDeckChosen(n)"
-                >
-                    <v-img
-                        class="white--text align-end"
-                        height="200px"
-                        src="https://www.journaldugeek.com/content/uploads/2017/10/41mztsnrdm.jpg"
-                    >
-                      <v-card-title>{{n.name}}</v-card-title>
-                    </v-img>
-                </v-card>
-            </v-row>
-        </template>
-    </div>
+  <div>
+    <v-row>
+      <v-card
+      class="mx-auto"
+      max-width="400"
+      v-for="deck in getDecks()"
+      v-bind:key="deck.name"
+      @click="onDeckChosen(deck)"
+      >
+        <v-img
+        class="white--text align-end"
+        height="200px"
+        src="https://www.journaldugeek.com/content/uploads/2017/10/41mztsnrdm.jpg"
+        >
+          <v-card-title>{{ deck.name }}</v-card-title>
+        </v-img>
+      </v-card>
+    </v-row>
+  </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import router from '@/router'
 export default {
   name: 'DisplayDecks',
-  mounted () {
-    if (localStorage.getItem('decks') !== null) {
-      this.decks = JSON.parse(localStorage.getItem('decks'))
-    }
-  },
-  data () {
-    return {
-      decks: [],
-      deckName: ''
-    }
-  },
+  data: () => ({}),
   methods: {
-    onDeckChosen (selectedDeck) {
+    ...mapGetters('decks', ['getDecks']),
+    onDeckChosen: selectedDeck =>
       router.push({ name: 'Deck', params: { deck: selectedDeck } })
-    }
   }
 }
 </script>

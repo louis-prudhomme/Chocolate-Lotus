@@ -28,15 +28,23 @@
                 <span>{{ card.set }}</span>
             </v-card-title>
             <v-card-subtitle>{{ card.type }}</v-card-subtitle>
-            <v-card-text></v-card-text>
+            <v-card-actions>
+                <v-btn
+                color="primary"
+                @click="initDeckDialog(card)">Add to deck</v-btn>
+            </v-card-actions>
         </v-card>
     </v-col>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
-  name: 'Card',
+  name: 'CardGridElement',
   props: ['card'],
-  data: () => ({})
+  data: () => ({}),
+  methods: {
+    ...mapActions(['initDeckDialog'])
+  }
 }
 </script>
