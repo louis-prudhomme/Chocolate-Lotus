@@ -20,23 +20,7 @@
       </v-container>
     </v-form>
     <div>
-      <!-- Loading spinner -->
-      <v-row
-      v-if="loading"
-      class="text-center">
-        <v-col cols="12">
-          <v-progress-circular
-          color="primary"
-          indeterminate
-          size="128"/>
-          <v-col cols="12">
-            <h1>The magic is loading…</h1>
-          </v-col>
-          <v-col cols="12">
-            <h2>(it usually take a little time)</h2>
-          </v-col>
-        </v-col>
-      </v-row>
+      <LoadingSpinner :displayed="loading"/>
 
       <!-- No results -->
       <v-row
@@ -61,6 +45,7 @@
 
 <script>
 import CardGrid from '@/components/CardGrid.vue'
+import LoadingSpinner from '@/components/LoadingSpinner.vue'
 
 const mtg = require('mtgsdk')
 
@@ -85,7 +70,8 @@ export default {
     }
   },
   components: {
-    CardGrid
+    CardGrid,
+    LoadingSpinner
   }
 }
 </script>
