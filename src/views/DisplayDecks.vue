@@ -7,7 +7,7 @@
                     max-width="400"
                     v-for="n in this.decks"
                     v-bind:key="n.name.toString()"
-                    @click="onDeckChosen(n.name.toString())"
+                    @click="onDeckChosen(n)"
                 >
                     <v-img
                         class="white--text align-end"
@@ -38,8 +38,8 @@ export default {
     }
   },
   methods: {
-    onDeckChosen (deckName) {
-      router.push({ name: 'Deck', params: { deckName: deckName } })
+    onDeckChosen (selectedDeck) {
+      router.push({ name: 'Deck', params: { deck: selectedDeck } })
     }
   }
 }
