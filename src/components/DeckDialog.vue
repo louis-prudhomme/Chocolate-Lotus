@@ -13,8 +13,9 @@
         v-for="deck in getDecks()"
         v-bind:key="deck.name"
         v-model="selectedDecks"
-        :label="`${deck.name}`"
-        :value="`${deck.name}`"/>
+        :label="deck.name"
+        :value="deck.name"
+        :disabled="deck.cards.length >= 60"/>
 
         <v-col cols="12">
           <v-text-field
