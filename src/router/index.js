@@ -4,6 +4,7 @@ import About from '@/views/About.vue'
 import SearchCard from '@/views/SearchCard.vue'
 import Display from '@/views/DisplayCard.vue'
 import Decks from '@/views/DisplayDecks.vue'
+import Deck from '@/views/DisplayDeck.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -26,7 +27,14 @@ const routes = [
   {
     path: '/decks',
     name: 'Decks',
-    component: Decks
+    component: Decks,
+    props: true
+  },
+  {
+    path: '/deck',
+    name: 'Deck',
+    component: Deck,
+    props: true
   }
 ]
 
