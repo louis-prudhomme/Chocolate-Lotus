@@ -33,6 +33,13 @@ const actions = {
     if (localStorage.getItem('decks')) {
       this.state.decks = JSON.parse(localStorage.getItem('decks'))
     }
+  },
+  async deleteDeck ({ commit }, card, deck) {
+    deck.cards.splice(deck.cards.indexOf(card), 1)
+    this.updateDeck(deck)
+  },
+  async deleteCard ({ state, commit }, card, deck) {
+    state.decks.cards.splice(this.deckData.cards.indexOf(card), 1)
   }
 }
 

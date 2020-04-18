@@ -15,19 +15,25 @@
         >
           <v-card-title>{{ deck.name }}</v-card-title>
         </v-img>
+        <v-btn
+          @click="deleteDeck(deck)"
+          icon>
+          <v-icon>mdi-minus</v-icon>
+        </v-btn>
       </v-card>
     </v-row>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import router from '@/router'
 export default {
   name: 'DisplayDecks',
   data: () => ({}),
   methods: {
     ...mapGetters('decks', ['getDecks']),
+    ...mapActions('decks', ['deleteDeck']),
     onDeckChosen: selectedDeck =>
       router.push({ name: 'Deck', params: { deck: selectedDeck } })
   }

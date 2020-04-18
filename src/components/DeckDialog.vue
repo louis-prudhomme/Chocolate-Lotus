@@ -40,33 +40,33 @@ export default {
   name: 'DeckDialog',
   data: () => ({
     newDeck: null,
-    selectedDecks: [],
-    utilCards: null
+    selectedDecks: []
   }),
-  mounted () {
-    this.utilCards = {
-      id: this.pendingCard.id,
-      name: this.pendingCard.name,
-      picture: this.pendingCard.imageUrl,
-      colors: this.pendingCard.colors,
-      manaCost: this.pendingCard.manaCost,
-      types: this.pendingCard.types
-    }
-  },
   props: ['displayed', 'pendingCard'],
   methods: {
     addDeck () {
+      var utilCards = {
+        key: 0,
+        id: this.pendingCard.id,
+        name: this.pendingCard.name,
+        picture: this.pendingCard.imageUrl,
+        colors: this.pendingCard.colors,
+        manaCost: this.pendingCard.manaCost,
+        types: this.pendingCard.types
+      }
       if (this.newDeck) {
+        alert(this.newDeck)
         this.createDeck({
           name: this.newDeck,
-          cards: [this.utilCards]
+          cards: [utilCards]
         })
         this.newDeck = null
       }
       if (this.selectedDecks.length > 0) {
         this.selectedDecks.map(selected => this.getDeckByName()(selected))
           .forEach(deck => {
-            deck.cards.push(this.utilCards)
+            utilCards.key = deck.cards.length
+            deck.cards.push(utilCards)
             this.updateDeck(deck)
           })
         this.selectedDecks = []

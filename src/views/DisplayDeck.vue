@@ -3,7 +3,6 @@
     <!-- Deck display -->
     <v-container>
       <div>
-        {{deck.cards}}
         <h1>Deck name : </h1>
         {{deck.name}}
         <h1>Statistics : </h1>
@@ -28,8 +27,8 @@
       <div>
         <h1>Cards : </h1>
         <v-card class="d-inline-block mx-auto"
-          v-for="card in deck.cards"
-          v-bind:key="card.id.toString()"
+          v-for="card in deckData.cards"
+          v-bind:key="card.key"
         >
           <v-container>
             <v-row justify="space-between">
@@ -49,7 +48,7 @@
                 >
                   <v-col class="px-0">
                     <v-btn
-                      @click="deleteCard(card)"
+                      @click="deleteCard(card, deckData)"
                       icon>
                       <v-icon>mdi-minus</v-icon>
                     </v-btn>
@@ -65,6 +64,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'DisplayDeck',
@@ -72,19 +72,19 @@ export default {
     deck: Object
   },
   mounted () {
+    this.deckData = this.deck
     if (localStorage.getItem('decks') !== null) {
       this.decks = JSON.parse(localStorage.getItem('decks'))
     }
   },
   data () {
     return {
-      decks: []
+      decks: [],
+      deckData: null
     }
   },
   methods: {
-    deleteCard (card) {
-      this.deck = this.deck.cards.splice(this.deck.cards.indexOf(card), 1)
-    },
+    ...mapActions('decks', ['deleteCard']),
     saveDeck () {
       const parsed = JSON.stringify(this.decks)
       localStorage.setItem('decks', parsed)
