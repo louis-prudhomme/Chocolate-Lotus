@@ -3,7 +3,7 @@
     <!-- Deck display -->
     <v-container>
       <div>
-        {{deck.idCards}}
+        {{deck.cards}}
         <h1>Deck name : </h1>
         {{deck.name}}
         <h1>Statistics : </h1>
@@ -28,8 +28,8 @@
       <div>
         <h1>Cards : </h1>
         <v-card class="d-inline-block mx-auto"
-          v-for="card in deck.idCards"
-          v-bind:key="card.idCard.toString()"
+          v-for="card in deck.cards"
+          v-bind:key="card.id.toString()"
         >
           <v-container>
             <v-row justify="space-between">
@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     deleteCard (card) {
-      this.deck = this.deck.idCards.splice(this.deck.idCards.indexOf(card), 1)
+      this.deck = this.deck.cards.splice(this.deck.cards.indexOf(card), 1)
     },
     saveDeck () {
       const parsed = JSON.stringify(this.decks)
