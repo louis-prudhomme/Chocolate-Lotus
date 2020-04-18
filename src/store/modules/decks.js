@@ -38,9 +38,6 @@ const actions = {
     deck.cards.splice(deck.cards.indexOf(card), 1)
     this.updateDeck(deck)
   },
-  async deleteCard ({ state, commit }, card, deck) {
-    state.decks.cards.splice(this.deckData.cards.indexOf(card), 1)
-  },
   async napalm ({ state }) {
     state.decks = []
     localStorage.removeItem('decks')

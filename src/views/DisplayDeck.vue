@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 
 export default {
   name: 'DisplayDeck',
@@ -84,7 +83,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions('decks', ['deleteCard']),
+    deleteCard (card) {
+      this.deckData.cards.splice(this.deckData.cards.indexOf(card), 1)
+    },
     saveDeck () {
       const parsed = JSON.stringify(this.decks)
       localStorage.setItem('decks', parsed)

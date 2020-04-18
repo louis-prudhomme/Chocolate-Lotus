@@ -62,7 +62,6 @@ export default {
         types: this.pendingCard.types
       }
       if (this.newDeck) {
-        alert(this.newDeck)
         this.createDeck({
           name: this.newDeck,
           cards: [utilCards]
