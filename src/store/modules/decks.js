@@ -23,15 +23,15 @@ const mutations = {
 const actions = {
   async createDeck ({ commit }, deck) {
     commit('mutDeck', deck)
-    localStorage.setItem('decks', JSON.stringify(this.decks))
+    localStorage.setItem('decks', JSON.stringify(this.state.decks))
   },
   async updateDeck ({ commit }, deck) {
     commit('mutDeck', deck)
-    localStorage.setItem('decks', JSON.stringify(this.decks))
+    localStorage.setItem('decks', JSON.stringify(this.state.decks))
   },
   async fetchDecks ({ commit }) {
-    if (localStorage.getItem('decks') !== null) {
-      this.decks = JSON.parse(localStorage.getItem('decks'))
+    if (localStorage.getItem('decks')) {
+      this.state.decks = JSON.parse(localStorage.getItem('decks'))
     }
   }
 }
