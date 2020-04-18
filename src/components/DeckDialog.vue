@@ -13,14 +13,16 @@
         v-for="deck in getDecks()"
         v-bind:key="deck.name"
         v-model="selectedDecks"
-        :label="`${deck.name}`"
-        :value="`${deck.name}`"/>
+        :label="deck.name"
+        :value="deck.name"
+        :disabled="deck.cards.length >= 60"/>
 
         <v-col cols="12">
           <v-text-field
           label="New deck"
           v-model="newDeck"
-          placeholder="New deck name"/>
+          placeholder="New deck name"
+          @input="checkDeckName()"/>
         </v-col>
       </v-card-text>
 
@@ -28,7 +30,11 @@
 
       <v-card-actions>
         <v-btn color="primary" text @click="resetDeckDialog">Close</v-btn>
-        <v-btn color="primary" text @click="addDeck">Save</v-btn>
+        <v-btn
+        color="primary"
+        text
+        @click="addDeck"
+        :disabled="!isSavePossible">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -40,7 +46,8 @@ export default {
   name: 'DeckDialog',
   data: () => ({
     newDeck: null,
-    selectedDecks: []
+    selectedDecks: [],
+    isSavePossible: true
   }),
   props: ['displayed', 'pendingCard'],
   methods: {
@@ -72,6 +79,9 @@ export default {
         this.selectedDecks = []
       }
       this.resetDeckDialog()
+    },
+    checkDeckName () {
+      this.isSavePossible = !this.getDeckByName()(this.newDeck) !== false
     },
     ...mapGetters('decks', ['getDecks', 'getDeckByName']),
     ...mapActions('decks', ['createDeck', 'updateDeck']),

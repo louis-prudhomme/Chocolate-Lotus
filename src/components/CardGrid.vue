@@ -1,15 +1,15 @@
 <template>
-    <!-- Results display -->
-    <v-container>
-      <!-- Card grid -->
-      <v-row>
-        <CardGridElement
-          v-for="card in cards"
-          :key="card.id"
-          :card="card"
-          v-on:card-chosen="onCardChosen"/>
-      </v-row>
-    </v-container>
+  <!-- Results display -->
+  <v-container>
+    <!-- Card grid -->
+    <v-row>
+      <CardGridElement
+        v-for="card in cards"
+        :key="card.id"
+        :card="card"
+        v-on:card-chosen="onCardChosen"/>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -23,8 +23,8 @@ export default {
     onCardChosen (card) {
       router.push({
         name: 'Display',
-        params: { card: card }
-        // query: { card: card.id }
+        params: { card: card },
+        query: { cardId: card.id }
       })
     }
   },
