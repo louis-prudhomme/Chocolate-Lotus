@@ -21,18 +21,22 @@ const mutations = {
 }
 
 const actions = {
-  async createDeck ({ commit }, deck) {
+  async createDeck ({ commit, state }, deck) {
     commit('mutDeck', deck)
-    localStorage.setItem('decks', JSON.stringify(this.state.decks))
+    localStorage.setItem('decks', JSON.stringify(state.decks))
   },
-  async updateDeck ({ commit }, deck) {
+  async updateDeck ({ commit, state }, deck) {
     commit('mutDeck', deck)
-    localStorage.setItem('decks', JSON.stringify(this.state.decks))
+    localStorage.setItem('decks', JSON.stringify(state.decks))
   },
-  async fetchDecks ({ commit }) {
+  async fetchDecks ({ state }) {
     if (localStorage.getItem('decks')) {
-      this.state.decks = JSON.parse(localStorage.getItem('decks'))
+      state.decks = JSON.parse(localStorage.getItem('decks'))
     }
+  },
+  async napalm ({ state }) {
+    state.decks = []
+    localStorage.removeItem('decks')
   }
 }
 
