@@ -43,6 +43,12 @@
         </v-list-item>
         <v-list-item link>
           <v-list-item-icon>
+            <v-icon>mdi-folder</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title @click="$router.push({ name : 'Dock'})">Import / export decks</v-list-item-title>
+        </v-list-item>
+        <v-list-item link>
+          <v-list-item-icon>
             <v-icon>mdi-image</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Ma galerie</v-list-item-title>
@@ -71,7 +77,7 @@
 
 <script>
 import DeckDialog from '@/components/DeckDialog.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'App',
@@ -79,7 +85,11 @@ export default {
   data: () => ({
   }),
   methods: {
-    ...mapGetters(['getPendingCard', 'isDeckDialogAsked'])
+    ...mapGetters(['getPendingCard', 'isDeckDialogAsked']),
+    ...mapActions('decks', ['fetchDecks'])
+  },
+  mounted: function () {
+    this.fetchDecks()
   },
   components: {
     DeckDialog

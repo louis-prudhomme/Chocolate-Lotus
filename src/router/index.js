@@ -5,6 +5,7 @@ import SearchCard from '@/views/SearchCard.vue'
 import Display from '@/views/DisplayCard.vue'
 import Decks from '@/views/DisplayDecks.vue'
 import Deck from '@/views/DisplayDeck.vue'
+import DeckDock from '@/views/DeckDock.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,12 @@ const routes = [
     path: '/display',
     name: 'Display',
     component: Display,
+    props: true
+  },
+  {
+    path: '/dock',
+    name: 'Dock',
+    component: DeckDock,
     props: true
   },
   {
