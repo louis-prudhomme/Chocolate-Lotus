@@ -48,7 +48,7 @@
                 >
                   <v-col class="px-0">
                     <v-btn
-                      @click="deleteCard(card, deckData)"
+                      @click="deleteCard(card)"
                       icon>
                       <v-icon>mdi-minus</v-icon>
                     </v-btn>
@@ -72,23 +72,15 @@ export default {
   },
   mounted () {
     this.deckData = this.deck
-    if (localStorage.getItem('decks') !== null) {
-      this.decks = JSON.parse(localStorage.getItem('decks'))
-    }
   },
   data () {
     return {
-      decks: [],
       deckData: null
     }
   },
   methods: {
     deleteCard (card) {
       this.deckData.cards.splice(this.deckData.cards.indexOf(card), 1)
-    },
-    saveDeck () {
-      const parsed = JSON.stringify(this.decks)
-      localStorage.setItem('decks', parsed)
     }
   }
 }

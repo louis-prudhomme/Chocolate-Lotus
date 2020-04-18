@@ -6,7 +6,6 @@
       max-width="400"
       v-for="deck in getDecks()"
       v-bind:key="deck.name"
-      @click="onDeckChosen(deck)"
       >
         <v-img
         class="white--text align-end"
@@ -19,6 +18,11 @@
           @click="deleteDeck(deck)"
           icon>
           <v-icon>mdi-minus</v-icon>
+        </v-btn>
+        <v-btn
+          @click="onDeckChosen(deck)"
+          icon>
+          <v-icon>mdi-information</v-icon>
         </v-btn>
       </v-card>
     </v-row>
