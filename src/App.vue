@@ -4,7 +4,10 @@
     app
     color="primary"
     dark>
-      <div class="d-flex align-center">
+      <div
+      class="d-flex align-center"
+      @click="$router.push({ name : 'Home'})"
+      style="cursor: pointer;">
         <v-img
         alt="Chocolate Lotus Logo"
         contain
