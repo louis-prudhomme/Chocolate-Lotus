@@ -9,12 +9,15 @@
               rows="4"
               no-resize
               v-model="input"
-              @input="displayInputInfo()"/>
+              @input="deserialize()"/>
             </v-col>
             <v-col cols="12" md="6">
-              <p v-for="line in inputInfo" :key="line">
-                  {{ line }}
-              </p>
+              <h2>{{ logImport }}</h2>
+              <ul>
+                <li v-for="log in logDecks" :key="log">
+                  {{ log }}
+                </li>
+              </ul>
             </v-col>
         </v-row>
         <v-row v-if="!!input">
@@ -23,7 +26,7 @@
         <v-row>
             <v-btn
             type="submit"
-            :disabled="!input"
+            :disabled="!(input && valid)"
             @click="importDecks()"
             color="primary">Import !</v-btn>
         </v-row>
@@ -35,13 +38,13 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'DeckImport',
-  data () {
-    return {
-      input: '',
-      deserialized: {},
-      inputLog: ''
-    }
-  },
+  data: () => ({
+    input: '',
+    deserialized: {},
+    logImport: '',
+    logDecks: [],
+    valid: false
+  }),
   methods: {
     ...mapGetters('decks', ['getDecks']),
     ...mapActions('decks', ['napalm', 'createDeck']),
@@ -50,14 +53,18 @@ export default {
       this.deserialized.forEach(deck => this.createDeck(deck))
     },
     deserialize: function () {
-      return JSON.parse(atob(this.input))
-    },
-    displayInputInfo: function () {
-      this.deserialized = this.deserialize()
-      this.inputInfo = [
-        this.deserialized.length + ' decks detected :',
-        ...this.deserialized.map(deck => 'Deck «' + deck.name + '» with ' + deck.cards.length + ' cards')
-      ]
+      try {
+        this.deserialized = JSON.parse(atob(this.input))
+
+        this.logImport = `${this.deserialized.length} decks detected :`
+        this.logDecks = this.deserialized
+          .map(deck => `Deck «${deck.name}» with ${deck.cards.length} cards`)
+        this.valid = true
+      } catch (e) {
+        this.logImport = 'An error as occurred during the detection of your data. Please check your input.'
+        this.logDecks = []
+        this.valid = false
+      }
     }
   }
 }
