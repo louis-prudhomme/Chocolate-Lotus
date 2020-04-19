@@ -98,19 +98,20 @@ Those lines should be relatively short (~100 characters, max).
 
 Here is a handful of useful git commands :
 
-|            Command             |                          Effect                          |
-| :----------------------------: | :------------------------------------------------------: |
-|        `git add <file>`        |           Stages a file in the pending commit            |
-|          `git commit`          |                Commits every staged file                 |
-|           `git push`           |      Sends local commits against the current branch      |
-|           `git pull`           |              Gets every remote commits made              |
-|    `git checkout <branch>`     |            Changes current branch to `branch`            |
-| `git checkout -b <new-branch>` |      Creates new branch `branch` and switches to it      |
-|      `git merge <branch>`      |         Merges `branch` into the current branch          |
-|          `git status`          |         Shows the state of the local repository          |
-|     `git clone <git-url>`      |    Clones the repository located at `git-url` locally    |
-|       `git reset --hard`       |       Resets your local repository to last commit        |
-|       `git diff [file]`        | Displays changes between current version and last commit |
+|            Command             |                           Effect                            |
+| :----------------------------: | :---------------------------------------------------------: |
+|        `git add <file>`        |             Stages a file in the pending commit             |
+|          `git commit`          |                  Commits every staged file                  |
+|           `git push`           |       Sends local commits against the current branch        |
+|           `git pull`           |               Gets every remote commits made                |
+|    `git checkout <branch>`     |             Changes current branch to `branch`              |
+| `git checkout -b <new-branch>` |       Creates new branch `branch` and switches to it        |
+|      `git merge <branch>`      |           Merges `branch` into the current branch           |
+|          `git status`          |           Shows the state of the local repository           |
+|     `git clone <git-url>`      |     Clones the repository located at `git-url` locally      |
+|       `git reset --hard`       |         Resets your local repository to last commit         |
+|       `git diff [file]`        |  Displays changes between current version and last commit   |
+|      `git shortlog -s -n`      | Displays the list of contributors and the number of commits |
 
 To change a file, the «standard» workflow would be :
 1. `git pull`
@@ -130,21 +131,23 @@ The standard workflow for a branch would be :
 
 If you want aliases to spend less time typing in your console and more in your IDE, here is a list of aliases :
 
-| Alias |            Original command             |
-| :---: | :-------------------------------------: |
-| `Gal` |      `git add --all && git status`      |
-| `Gad` |                `git add`                |
-| `Gco` |              `git commit`               |
-| `Gps` |               `git push`                |
-| `Gpl` |               `git pull`                |
-| `Gck` |             `git checkout`              |
-| `Gbr` |            `git checkout -b`            |
-| `Gst` |              `git status`               |
-| `Grs` |           `git reset --hard`            |
-| `Gmr` |               `git merge`               |
-| `Gac` |      `git add --all && git commit`      |
-| `Gff` |               `git diff`                |
-| `Glo` | *too long* Displays branches in console |
+| Alias |               Original command                |
+| :---: | :-------------------------------------------: |
+| `Gal` |         `git add --all && git status`         |
+| `Gad` |                   `git add`                   |
+| `Gco` |                 `git commit`                  |
+| `Gps` |                  `git push`                   |
+| `Gpl` |                  `git pull`                   |
+| `Gck` |                `git checkout`                 |
+| `Gbr` |               `git checkout -b`               |
+| `Gst` |                 `git status`                  |
+| `Grs` |              `git reset --hard`               |
+| `Gmr` |                  `git merge`                  |
+| `Gac` |         `git add --all && git commit`         |
+| `Gff` |                  `git diff`                   |
+| `Glo` |         Displays branches in console          |
+| `Gsl` |             `git shortlog -s -n`              |
+| `Gbl` | Displays the number of lines per contributors |
 
 The file is located in `fronty/tools/git_aliases` ; to add it in your bash, use the following command at the root of the project :
 
