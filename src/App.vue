@@ -54,7 +54,7 @@
           <v-list-item-icon>
             <v-icon>mdi-image</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>Ma galerie</v-list-item-title>
+          <v-list-item-title @click="$router.push({ name : 'Gallery'})">Ma galerie</v-list-item-title>
         </v-list-item>
         <v-list-item link>
           <v-list-item-icon>

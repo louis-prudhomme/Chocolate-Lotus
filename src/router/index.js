@@ -43,6 +43,10 @@ const routes = [
     name: 'Deck',
     component: Deck,
     props: true
+  },
+  {
+    path: '/gallery',
+    name: 'Gallery'
   }
 ]
 
