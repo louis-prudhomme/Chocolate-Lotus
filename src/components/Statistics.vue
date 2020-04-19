@@ -1,16 +1,5 @@
 <template>
   <v-container>
-    <v-row class="mb-6">
-      <v-col :cols="4">
-        <v-card min-height="600">
-        <h1>Deck : </h1>
-        <v-col>
-          <h2>Title </h2>
-          <h3>{{deck.name}}</h3>
-        </v-col>
-        </v-card>
-      </v-col>
-      <v-col :cols="8">
         <v-row>
           <v-col>
             <v-card min-height="300">
@@ -35,8 +24,6 @@
             </v-card>
           </v-col>
         </v-row>
-      </v-col>
-    </v-row>
   </v-container>
 </template>
 
@@ -73,19 +60,22 @@ export default {
   },
   methods: {
     initStats () {
-      this.chartTypes = [['Type', 'Number'],
+      this.chartTypes = [
+        ['Type', 'Number'],
         ['Land', 0],
         ['Enchantment', 0],
         ['Artifact', 0],
         ['Creature', 0]]
-      this.chartMana = [['Mana', 'Cost'],
+      this.chartMana = [
+        ['Mana', 'Cost'],
         ['1 -', 0],
         ['2', 0],
         ['3', 0],
         ['4', 0],
         ['5', 0],
         ['6 +', 0]]
-      this.chartColors = [['Colors', 'Rate'],
+      this.chartColors = [
+        ['Colors', 'Rate'],
         ['Red', 0],
         ['Black', 0],
         ['Green', 0],
