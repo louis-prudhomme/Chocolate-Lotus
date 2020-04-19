@@ -71,7 +71,11 @@ export default {
       if (this.selectedDecks.length > 0) {
         this.selectedDecks.map(selected => this.getDeckByName()(selected))
           .forEach(deck => {
-            utilCards.key = deck.cards[deck.cards.length - 1].key + 1
+            if (deck.cards.length === 0) {
+              utilCards.key = 0
+            } else {
+              utilCards.key = deck.cards[deck.cards.length - 1].key + 1
+            }
             deck.cards.push(utilCards)
             this.updateDeck(deck)
           })
