@@ -1,7 +1,6 @@
 <template>
   <div>
     <LoadingSpinner :displayed="!card.id"/>
-
     <v-container :key="card.id">
       <v-row justify="center">
         <v-card>
@@ -35,7 +34,7 @@
                     </tr>
                     <tr>
                       <td>Mana cost</td>
-                      <td>{{ card.manaCost }}</td>
+                      <td>{{ card.cmc }}</td>
                     </tr>
                   </tbody>
                 </v-simple-table>
@@ -125,7 +124,7 @@ export default {
       var dictionnary = {}
       dictionnary.Blue = require('@/assets/colors/blue.png')
       dictionnary.Black = require('@/assets/colors/black.png')
-      dictionnary.Yellow = require('@/assets/colors/yellow.png')
+      dictionnary.White = require('@/assets/colors/yellow.png')
       dictionnary.Green = require('@/assets/colors/green.png')
       dictionnary.Red = require('@/assets/colors/red.png')
       return dictionnary[color]

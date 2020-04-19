@@ -58,7 +58,7 @@ export default {
         name: this.pendingCard.name,
         picture: this.pendingCard.imageUrl,
         colors: this.pendingCard.colors,
-        manaCost: this.pendingCard.manaCost,
+        manaCost: this.pendingCard.cmc,
         types: this.pendingCard.types
       }
       if (this.newDeck) {
