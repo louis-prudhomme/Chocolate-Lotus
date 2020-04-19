@@ -22,7 +22,6 @@
               <GChart type="ColumnChart" :data="chartMana" :options="chartOptions"/>
             </v-card>
           </v-col>
-
           <v-col>
             <v-card min-height="300">
                 <h1 align="center">Total</h1>
@@ -55,7 +54,6 @@ export default {
   data () {
     return {
       cards: this.deck.cards,
-      deckData: this.deck,
       chartTypes: [],
       chartMana: [],
       chartColors: [],

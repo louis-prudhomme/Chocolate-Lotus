@@ -53,15 +53,6 @@ export default {
   props: {
     deck: Object
   },
-  mounted () {
-    this.deckData = this.deck
-  },
-  data () {
-    return {
-      item: {},
-      deckData: null
-    }
-  },
   methods: {
     ...mapActions('decks', ['deleteCard'])
   },
