@@ -12,6 +12,7 @@
               <h2>Creation Date</h2>
               <h3>{{deck.date}}</h3>
               <h2>Tags </h2>
+              <h3>{{deck.keywords}}</h3>
             </v-col>
           </v-card>
         </v-col>
