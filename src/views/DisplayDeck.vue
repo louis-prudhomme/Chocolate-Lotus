@@ -10,7 +10,7 @@
               <h2>Title </h2>
               <h3>{{deck.name}}</h3>
               <h2>Creation Date</h2>
-              <h3></h3>
+              <h3>{{deck.date}}</h3>
               <h2>Tags </h2>
             </v-col>
           </v-card>

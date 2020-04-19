@@ -64,6 +64,7 @@ export default {
       if (this.newDeck) {
         this.createDeck({
           name: this.newDeck,
+          date: new Date().toJSON().slice(0, 10).replace(/-/g, '/'),
           cards: [utilCards]
         })
         this.newDeck = null
