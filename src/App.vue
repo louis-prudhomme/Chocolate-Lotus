@@ -86,6 +86,9 @@ export default {
     ...mapActions('decks', ['fetchDecks']),
     ...mapActions('favorites', ['fetchFavorites'])
   },
+  beforeCreate: () => {
+    document.title = 'Chocolate Lotus'
+  },
   mounted: function () {
     this.fetchDecks()
     this.fetchFavorites()
