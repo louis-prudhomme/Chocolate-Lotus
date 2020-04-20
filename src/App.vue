@@ -1,79 +1,72 @@
 <template>
   <v-app>
-    <v-app-bar
-    app
-    color="primary"
-    dark>
-      <div
-      class="d-flex align-center"
-      @click="$router.push({ name : 'Home'})"
-      style="cursor: pointer;">
-        <v-img
-        alt="Chocolate Lotus Logo"
-        contain
-        src="@/assets/lotus.png"
-        transition="scale-transition"
-        width="80"/>
-
-        <v-img
-        alt="Chocolate Lotus Name"
-        contain
-        min-width="100"
-        src="@/assets/name.png"
-        width="250"/>
+    <template>
+      <div>
+      <v-app-bar color="#8B0000" dark>
+        <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+        <v-toolbar-title>Chocolate Lotus</v-toolbar-title>
+      </v-app-bar>
       </div>
-    </v-app-bar>
-
-    <v-navigation-drawer
-    app
-    permanent
-    expand-on-hover
-    right>
-      <v-list
-      nav
-      dense>
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-flower</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title @click="$router.push({ name : 'Home'})">Home</v-list-item-title>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-folder</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title @click="$router.push({ name : 'Decks'})">My Decks</v-list-item-title>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-folder</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title @click="$router.push({ name : 'Dock'})">Import / export decks</v-list-item-title>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-image</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Ma galerie</v-list-item-title>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-star</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Mes favoris </v-list-item-title>
-        </v-list-item>
-        <v-btn
-        :class="!$vuetify.theme.dark ? 'yellow--text' : '' "
-        icon
-        @click="$vuetify.theme.dark = !$vuetify.theme.dark">
-          <v-icon>mdi-lightbulb</v-icon>
-        </v-btn>
-      </v-list>
-    </v-navigation-drawer>
+    </template>
+      <v-navigation-drawer v-model="drawer" absolute temporary>
+        <v-list nav v-model="group" dense>
+          <v-list-item-group
+            v-model="group"
+            active-class="#8B0000--text text--accent-4"
+          >
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>mdi-flower</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title @click="$router.push({ name: 'Home' })"
+                >Home</v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>mdi-folder</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title @click="$router.push({ name: 'Decks' })"
+                >My Decks</v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>mdi-folder</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title @click="$router.push({ name: 'Dock' })"
+                >Import / export decks</v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>mdi-image</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Ma galerie</v-list-item-title>
+            </v-list-item>
+            <v-list-item link>
+              <v-list-item-icon>
+                <v-icon>mdi-star</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Mes favoris </v-list-item-title>
+            </v-list-item>
+            <v-btn
+              :class="!$vuetify.theme.dark ? 'yellow--text' : ''"
+              icon
+              @click="$vuetify.theme.dark = !$vuetify.theme.dark"
+            >
+              <v-icon>mdi-lightbulb</v-icon>
+            </v-btn>
+          </v-list-item-group>
+        </v-list>
+      </v-navigation-drawer>
 
     <v-content>
-      <router-view/>
-      <DeckDialog :displayed="isDeckDialogAsked()" :pendingCard="getPendingCard()"/>
+      <router-view />
+      <DeckDialog
+        :displayed="isDeckDialogAsked()"
+        :pendingCard="getPendingCard()"
+      />
     </v-content>
   </v-app>
 </template>
@@ -86,6 +79,7 @@ export default {
   name: 'App',
 
   data: () => ({
+    drawer: false
   }),
   methods: {
     ...mapGetters(['getPendingCard', 'isDeckDialogAsked']),
