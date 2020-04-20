@@ -34,9 +34,14 @@ const actions = {
       state.decks = JSON.parse(localStorage.getItem('decks'))
     }
   },
-  async deleteDeck ({ commit }, card, deck) {
+  async deleteDeck ({ commit }, deck) {
+    state.decks.splice(state.decks.indexOf(deck), 1)
+    localStorage.setItem('decks', JSON.stringify(state.decks))
+  },
+  async deleteCard ({ commit }, { card, deck }) {
     deck.cards.splice(deck.cards.indexOf(card), 1)
-    this.updateDeck(deck)
+    commit('mutDeck', deck)
+    localStorage.setItem('decks', JSON.stringify(state.decks))
   },
   async napalm ({ state }) {
     state.decks = []
