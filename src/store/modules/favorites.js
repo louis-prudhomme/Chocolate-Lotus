@@ -6,6 +6,9 @@ const getters = {
   getFavorites: state => state.favorites,
   getFavoriteById: state => id => {
     return state.favorites.find(f => f.id === id)
+  },
+  isFavorite: state => card => {
+    return state.favorites.find(f => f.id === card.id)
   }
 }
 

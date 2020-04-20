@@ -32,27 +32,38 @@
                 <v-btn
                 text
                 color="primary"
-                @click="initDeckDialog(card)">+ deck</v-btn>
+                @click="initDeckDialog(card)">Add to deck</v-btn>
+                <v-spacer/>
                 <v-btn
-                text
-                color="secondary"
-                @click="addToFavorites(card)">+ favorites</v-btn>
+                icon
+                :class="faved ? 'green--text' : '' "
+                @click="faveIt(card)">
+                  <v-icon>mdi-heart</v-icon>
+                </v-btn>
             </v-card-actions>
         </v-card>
     </v-col>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'CardGridElement',
   props: ['card'],
-  data: () => ({}),
+  computed: {
+    faved: function () { return this.isFavorite()(this.card) }
+  },
   methods: {
     ...mapActions(['initDeckDialog']),
-    ...mapActions('favorites', ['addFavorite']),
-    addToFavorites: function (card) {
-      this.addFavorite(card)
+    ...mapActions('favorites', ['addFavorite', 'deleteFavorite']),
+    ...mapGetters('favorites', ['isFavorite']),
+    faveIt: function (card) {
+      if (!this.faved) {
+        this.addFavorite(card)
+      } else {
+        this.deleteFavorite(card)
+      }
     }
   }
 }

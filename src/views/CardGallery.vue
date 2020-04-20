@@ -5,7 +5,7 @@
         <h1>My favorites</h1>
       </v-col>
     </v-row>
-    <v-row v-if="getFavorites().length">
+    <v-row v-if="!getFavorites().length">
       <v-col cols="12">
         <h2>No favorite cards yet ?</h2>
       </v-col>
