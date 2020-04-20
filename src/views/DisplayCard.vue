@@ -96,19 +96,43 @@
           <h1>Rules</h1>
         </v-col>
         <v-col cols="12">
-          <v-timeline>
+          <v-timeline class="hidden-sm-and-down">
             <v-timeline-item
-            color="primary"
-            fill-dot
-            v-for="rule in card.rulings" v-bind:key="rule.date + rule.text.length">
-              <v-card width="700">
+              color="primary"
+              fill-dot
+              v-for="rule in card.rulings" v-bind:key="rule.date + rule.text.length">
+              <v-card>
                 <v-card-title class="primary">
                   <h2 class="display-1 white--text font-weight-light">{{ rule.date }}</h2>
                 </v-card-title>
                 <v-container>
                   <v-row>
+                    <v-col cols="2" lg="1">
                     <v-icon size="50">mdi-calendar-text</v-icon>
-                    <v-col cols="12" md="10">
+                    </v-col>
+                    <v-col>
+                      <p>{{ rule.text }}</p>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card>
+            </v-timeline-item>
+          </v-timeline>
+          <v-timeline dense class="hidden-md-and-up">
+            <v-timeline-item
+              color="primary"
+              fill-dot
+              v-for="rule in card.rulings" v-bind:key="rule.date + rule.text.length">
+              <v-card>
+                <v-card-title class="primary">
+                  <h2 class="display-1 white--text font-weight-light">{{ rule.date }}</h2>
+                </v-card-title>
+                <v-container>
+                  <v-row>
+                    <v-col cols="1">
+                      <v-icon size="50">mdi-calendar-text</v-icon>
+                    </v-col>
+                    <v-col>
                       <p>{{ rule.text }}</p>
                     </v-col>
                   </v-row>
