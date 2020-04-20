@@ -46,21 +46,15 @@
         </v-list-item>
         <v-list-item link>
           <v-list-item-icon>
+            <v-icon>mdi-heart</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title @click="$router.push({ name : 'Gallery'})">My favorites gallery</v-list-item-title>
+        </v-list-item>
+        <v-list-item link>
+          <v-list-item-icon>
             <v-icon>mdi-folder</v-icon>
           </v-list-item-icon>
           <v-list-item-title @click="$router.push({ name : 'Dock'})">Import / export decks</v-list-item-title>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-image</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title @click="$router.push({ name : 'Gallery'})">My gallery</v-list-item-title>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-star</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Mes favoris </v-list-item-title>
         </v-list-item>
         <v-btn
         :class="!$vuetify.theme.dark ? 'yellow--text' : '' "
