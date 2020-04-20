@@ -37,7 +37,23 @@
           <v-container>
             <v-row justify="space-between">
               <v-col cols="auto">
-                <v-img :src="card.picture"/>
+                <v-img
+                :src="card.picture"
+                lazy-src="https://www.magiclibrarities.net/rarities/alternate-4th-edition-normal-backside.jpg"
+                height="300"
+                width="200"
+                contain>
+                <template v-slot:placeholder>
+                    <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center">
+                        <v-progress-circular
+                        indeterminate
+                        color="grey lighten-5"/>
+                    </v-row>
+                </template>
+                </v-img>
               </v-col>
               <v-col cols="auto" class="text-center pl-0">
                 <v-row class="flex-column ma-0 fill-height" justify="center">

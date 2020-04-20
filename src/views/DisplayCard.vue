@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LoadingSpinner :displayed="!card.id"/>
+    <LoadingSpinner :displayed="!card.id" />
     <v-container :key="card.id">
       <v-row justify="center">
         <v-card>
@@ -8,8 +8,25 @@
             <v-row align="center">
               <v-col cols="12" md="6">
                 <v-img
-                height="100%"
-                :src="card.imageUrl"/>
+                  :src="card.imageUrl"
+                  lazy-src="https://www.magiclibrarities.net/rarities/alternate-4th-edition-normal-backside.jpg"
+                  height="300"
+                  width="200"
+                  contain
+                >
+                  <template v-slot:placeholder>
+                    <v-row
+                      class="fill-height ma-0"
+                      align="center"
+                      justify="center"
+                    >
+                      <v-progress-circular
+                        indeterminate
+                        color="grey lighten-5"
+                      />
+                    </v-row>
+                  </template>
+                </v-img>
               </v-col>
               <v-col cols="12" md="6">
                 <v-simple-table>
@@ -22,10 +39,11 @@
                       <td>Color</td>
                       <td v-for="row in card.colors" v-bind:key="row">
                         <img
-                        :src="getColor(row)"
-                        v-bind:alt="row"
-                        height="30"
-                        width="30"/>
+                          :src="getColor(row)"
+                          v-bind:alt="row"
+                          height="30"
+                          width="30"
+                        />
                       </td>
                     </tr>
                     <tr>
@@ -43,7 +61,6 @@
           </v-container>
         </v-card>
       </v-row>
-
       <v-row class="text-center" align="center">
         <v-col cols="12">
           <h1>Description</h1>
@@ -60,12 +77,16 @@
         <v-col cols="12">
           <v-timeline>
             <v-timeline-item
-            color="primary"
-            fill-dot
-            v-for="rule in card.rulings" v-bind:key="rule.date + rule.text.length">
+              color="primary"
+              fill-dot
+              v-for="rule in card.rulings"
+              v-bind:key="rule.date + rule.text.length"
+            >
               <v-card width="700">
                 <v-card-title class="primary">
-                  <h2 class="display-1 white--text font-weight-light">{{ rule.date }}</h2>
+                  <h2 class="display-1 white--text font-weight-light">
+                    {{ rule.date }}
+                  </h2>
                 </v-card-title>
                 <v-container>
                   <v-row>
@@ -82,15 +103,16 @@
       </v-row>
 
       <v-btn
-      absolute
-      style="margin-top: 50px"
-      dark
-      fab
-      top
-      big
-      right
-      color="primary"
-      @click="initDeckDialog(card)">
+        absolute
+        style="margin-top: 50px"
+        dark
+        fab
+        top
+        big
+        right
+        color="primary"
+        @click="initDeckDialog(card)"
+      >
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-container>
@@ -107,7 +129,9 @@ export default {
   props: {
     card: {
       type: Object,
-      default: () => { return { id: false } }
+      default: () => {
+        return { id: false }
+      }
     }
   },
   data: () => ({}),
