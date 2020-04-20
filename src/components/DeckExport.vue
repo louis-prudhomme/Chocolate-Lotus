@@ -16,6 +16,9 @@
         :label="deck.name"
         :value="deck.name"/>
       </v-col>
+      <v-col v-if="!getDecks().length">
+        <h3>No decks to export. Yet ?</h3>
+      </v-col>
     </v-row>
     <v-row>
       <v-col cols="12">
@@ -26,7 +29,8 @@
         readonly
         rows="4"
         no-resize
-        v-model="this.export"/>
+        v-model="this.export"
+        :disabled="!getDecks().length"/>
       </v-col>
     </v-row>
   </v-container>
@@ -41,7 +45,7 @@ export default {
     selectedDecks: []
   }),
   computed: {
-    export: function () { return this.serialize() }
+    export: function () { return this.getDecks().length ? this.serialize() : 'No decks to export.' }
   },
   mounted: function () {
     this.$nextTick(function () {

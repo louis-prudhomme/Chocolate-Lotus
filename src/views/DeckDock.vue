@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <v-container>
     <DeckExport/>
     <DeckImport/>
-  </div>
+  </v-container>
 </template>
 
 <script>
