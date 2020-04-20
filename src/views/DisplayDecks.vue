@@ -32,6 +32,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import router from '@/router'
+
 export default {
   name: 'DisplayDecks',
   data: () => ({}),

@@ -46,6 +46,7 @@
 <script>
 import CardGrid from '@/components/CardGrid.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import router from '@/router'
 
 const mtg = require('mtgsdk')
 
@@ -57,8 +58,16 @@ export default {
     queried: false, // has a search been made before ?
     loading: false // is the card grid loading ?
   }),
+  created: function () {
+    if (!this.query && !!this.$route.query.query) {
+      this.query = this.$route.query.query
+      this.search()
+    }
+  },
   methods: {
     async search () {
+      router.push({ path: 'search', query: { query: this.query } })
+
       this.loading = true
       mtg.card.where({ name: this.query })
         .then(cards => {

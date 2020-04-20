@@ -17,6 +17,11 @@ const routes = [
     component: SearchCard
   },
   {
+    path: '/search',
+    name: 'Search',
+    component: SearchCard
+  },
+  {
     path: '/about',
     name: 'About',
     component: About
