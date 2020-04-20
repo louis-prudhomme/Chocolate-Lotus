@@ -5,17 +5,14 @@
       <v-container>
         <v-row align="center"
         class="text-center">
-            <v-col cols="12" sm="9" md="10">
                 <v-text-field
                 v-model="query"
+                clear-icon="mdi-close-circle"
+                append-icon="mdi-magnify"
                 clearable
                 autofocus
+                outlined
                 label="Search a card here"/>
-            </v-col>
-            <v-col cols="12" sm="3" md="2">
-              <v-btn color="primary"
-              @click="search">Search !</v-btn>
-            </v-col>
         </v-row>
       </v-container>
     </v-form>

@@ -2,17 +2,20 @@
   <v-app>
     <template>
       <div>
-      <v-app-bar color="#8B0000" dark>
+      <v-app-bar color="primary" dark>
         <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
         <v-toolbar-title>Chocolate Lotus</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn icon @click="$router.push({ name: 'Home' })">
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
       </v-app-bar>
       </div>
     </template>
       <v-navigation-drawer v-model="drawer" absolute temporary>
-        <v-list nav v-model="group" dense>
+        <v-list nav dense>
           <v-list-item-group
-            v-model="group"
-            active-class="#8B0000--text text--accent-4"
+            active-class="primary--text text--accent-4"
           >
             <v-list-item link>
               <v-list-item-icon>

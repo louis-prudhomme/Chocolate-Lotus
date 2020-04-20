@@ -2,16 +2,29 @@
   <div>
     <LoadingSpinner :displayed="!card.id"/>
     <v-container :key="card.id">
-      <v-row justify="center">
-        <v-card>
-          <v-container>
-            <v-row align="center">
-              <v-col cols="12" md="6">
-                <v-img
-                height="100%"
-                :src="card.imageUrl"/>
+      <v-row>
+        <v-col cols="4" heigth="100%">
+          <v-card height="100%">
+            <v-col>
+              <v-img
+                height="350px"
+                lazy-src="https://www.magiclibrarities.net/rarities/alternate-4th-edition-normal-backside.jpg"
+                position="center top"
+                :src="card.imageUrl"
+                contain>
+                  <template v-slot:placeholder>
+                    <v-row
+                      class="fill-height ma-0"
+                      align="center"
+                      justify="center">
+                        <v-progress-circular
+                        indeterminate
+                        color="grey lighten-5"/>
+                    </v-row>
+                  </template>
+                </v-img>
               </v-col>
-              <v-col cols="12" md="6">
+              <v-col>
                 <v-simple-table>
                   <tbody>
                     <tr>
@@ -39,12 +52,31 @@
                   </tbody>
                 </v-simple-table>
               </v-col>
-            </v-row>
-          </v-container>
         </v-card>
+        </v-col>
+        <v-col :col="10">
+            <v-card height="40%" width="100%">
+              <div align="center" justify="center">
+                <GChart :data="Gauges" type="Gauge" :settings="{ packages: ['gauge'] }"/>
+              </div>
+            </v-card>
+          <v-row>
+            <v-col>
+              <v-card height="138%">
+                <h1 align="center" justify="center">Ratio Power/Toughness</h1>
+                <GChart :data="PieRatioAttDef" type="PieChart"/>
+              </v-card>
+            </v-col>
+            <v-col>
+              <v-card height="138%">
+                <h1 align="center" justify="center">Ratio Color</h1>
+                <GChart :data="PieRatioColor" type="PieChart"/>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-col>
       </v-row>
-
-      <v-row class="text-center" align="center">
+      <v-row>
         <v-col cols="12">
           <h1>Description</h1>
         </v-col>
@@ -53,7 +85,7 @@
         </v-col>
       </v-row>
 
-      <v-row class="text-center" align="center">
+      <v-row>
         <v-col cols="12">
           <h1>Rules</h1>
         </v-col>
@@ -80,7 +112,6 @@
           </v-timeline>
         </v-col>
       </v-row>
-
       <v-btn
       absolute
       style="margin-top: 50px"
@@ -100,6 +131,7 @@
 <script>
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import { mapActions } from 'vuex'
+import { GChart } from 'vue-google-charts'
 const mtg = require('mtgsdk')
 
 export default {
@@ -110,7 +142,21 @@ export default {
       default: () => { return { id: false } }
     }
   },
-  data: () => ({}),
+  data () {
+    return {
+      Gauges: [['Label', 'Value'],
+        ['Mana Cost', this.card.cmc],
+        ['Power', this.card.power],
+        ['Toughness', this.card.toughness]
+      ],
+      PieRatioAttDef: [],
+      PieRatioColor: []
+
+    }
+  },
+  mounted () {
+    this.setStats()
+  },
   created: async function () {
     if (!this.card.id) {
       await mtg.card.where({ id: this.$route.query.cardId }).then(cards => {
@@ -128,10 +174,51 @@ export default {
       dictionnary.Green = require('@/assets/colors/green.png')
       dictionnary.Red = require('@/assets/colors/red.png')
       return dictionnary[color]
+    },
+    initStats () {
+      this.PieRatioColor = [
+        ['Colors', 'Rate'],
+        ['Red', 0],
+        ['Black', 0],
+        ['Green', 0],
+        ['White', 0],
+        ['Blue', 0]]
+      this.PieRatioAttDef = [
+        ['Label', 'Value'],
+        ['Power', parseInt(this.card.power)],
+        ['Toughness', parseInt(this.card.toughness)]
+      ]
+    },
+    setStats () {
+      this.initStats()
+      this.card.colors.forEach(color =>
+        this.updateColor(color))
+    },
+    updateColor (color) {
+      switch (color) {
+        case 'White':
+          this.PieRatioColor[4][1] += 1
+          break
+        case 'Red':
+          this.PieRatioColor[1][1] += 1
+          break
+        case 'Black':
+          this.PieRatioColor[2][1] += 1
+          break
+        case 'Blue':
+          this.PieRatioColor[5][1] += 1
+          break
+        case 'Green':
+          this.PieRatioColor[3][1] += 1
+          break
+        default:
+          break
+      }
     }
   },
   components: {
-    LoadingSpinner
+    LoadingSpinner,
+    GChart
   }
 }
 </script>

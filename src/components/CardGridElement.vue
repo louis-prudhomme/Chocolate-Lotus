@@ -1,13 +1,16 @@
 <template>
     <v-col cols="12" sm="6" md="4" lg="3">
         <v-card
-        height="100%"
+        height="95%"
         raised
+        color="primary"
+        width="300px"
+        class="pa-md-4 mx-lg-auto"
         @click="$emit('card-chosen', card)">
             <v-img
             class="white--text align-end"
             :src="card.imageUrl"
-            height="376px"
+            height="350px"
             lazy-src="https://www.magiclibrarities.net/rarities/alternate-4th-edition-normal-backside.jpg"
             position="center top"
             contain>
@@ -22,17 +25,30 @@
                     </v-row>
                 </template>
             </v-img>
-            <v-card-title>
-                {{ card.name }}
-                <v-spacer/>
-                <span>{{ card.set }}</span>
-            </v-card-title>
-            <v-card-subtitle>{{ card.type }}</v-card-subtitle>
-            <v-card-actions>
-                <v-btn
-                color="primary"
-                @click="initDeckDialog(card)">Add to deck</v-btn>
-            </v-card-actions>
+            <v-divider
+                color="#FFFFFF"
+            ></v-divider>
+            <div>
+                <v-card-title class="white--text align-end">
+                    {{ card.name }}
+                    <v-spacer/>
+                    <span>{{ card.set }}</span>
+                </v-card-title>
+                <v-card-subtitle class="white--text align-end">{{ card.type }}
+                </v-card-subtitle>
+                <v-card-actions>
+                    <v-btn
+                        text
+                        color="secondary"
+                        @click="initDeckDialog(card)"
+                        justify="right"
+                    >
+                        <v-icon>mdi-plus</v-icon>
+                        Deck
+                    </v-btn>
+                </v-card-actions>
+            </div>
+
         </v-card>
     </v-col>
 </template>
