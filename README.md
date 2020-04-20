@@ -158,3 +158,18 @@ source ~/.bashrc
 ```
 
 All set ! Test it by using `Gst`, for instance.
+
+## NPM aliases
+
+| Alias | Original command |
+| :---: | :--------------: |
+| `Nrs` | `npm run serve`  |
+| `Nin` |  `npm install`   |
+
+The file is located in `fronty/tools/npm_aliases` ; to add it in your bash, use the following command at the root of the project :
+
+```bash
+cp ./tools/npm_aliases ~/.npm_aliases && \
+echo "[ -f ~/.npm_aliases ] && . ~/.npm_aliases" >> ~/.bashrc && \
+source ~/.bashrc
+```
