@@ -93,13 +93,26 @@
       @click="initDeckDialog(card)">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
+      <v-btn
+      absolute
+      style="margin-top: 150px"
+      dark
+      fab
+      top
+      big
+      right
+      color="secondary"
+      @click="faveIt(card)">
+        <v-icon
+        :class="faved ? 'green--text' : '' ">mdi-heart</v-icon>
+      </v-btn>
     </v-container>
   </div>
 </template>
 
 <script>
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 const mtg = require('mtgsdk')
 
 export default {
@@ -118,8 +131,10 @@ export default {
       })
     }
   },
+  computed: {
+    faved: function () { return this.isFavorite()(this.card) }
+  },
   methods: {
-    ...mapActions(['initDeckDialog']),
     getColor (color) {
       var dictionnary = {}
       dictionnary.Blue = require('@/assets/colors/blue.png')
@@ -128,6 +143,16 @@ export default {
       dictionnary.Green = require('@/assets/colors/green.png')
       dictionnary.Red = require('@/assets/colors/red.png')
       return dictionnary[color]
+    },
+    ...mapActions(['initDeckDialog']),
+    ...mapActions('favorites', ['addFavorite', 'deleteFavorite']),
+    ...mapGetters('favorites', ['isFavorite']),
+    faveIt: function (card) {
+      if (!this.faved) {
+        this.addFavorite(card)
+      } else {
+        this.deleteFavorite(card)
+      }
     }
   },
   components: {
