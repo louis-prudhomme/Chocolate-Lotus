@@ -3,8 +3,8 @@
     <LoadingSpinner :displayed="!card.id"/>
     <v-container :key="card.id">
       <v-row>
-        <v-col cols="4" heigth="100%">
-          <v-card height="100%">
+        <v-col cols="12" xs="6" sm="4" lg="3" heigth="100%">
+          <v-card>
             <v-col>
               <v-img
                 height="350px"
@@ -12,68 +12,74 @@
                 position="center top"
                 :src="card.imageUrl"
                 contain>
-                  <template v-slot:placeholder>
-                    <v-row
-                      class="fill-height ma-0"
-                      align="center"
-                      justify="center">
-                        <v-progress-circular
-                        indeterminate
-                        color="grey lighten-5"/>
-                    </v-row>
-                  </template>
-                </v-img>
-              </v-col>
-              <v-col>
-                <v-simple-table>
-                  <tbody>
-                    <tr>
-                      <td>Title</td>
-                      <td>{{ card.name }}</td>
-                    </tr>
-                    <tr>
-                      <td>Color</td>
-                      <td v-for="row in card.colors" v-bind:key="row">
-                        <img
-                        :src="getColor(row)"
-                        v-bind:alt="row"
-                        height="30"
-                        width="30"/>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>Type</td>
-                      <td>{{ card.type }}</td>
-                    </tr>
-                    <tr>
-                      <td>Mana cost</td>
-                      <td>{{ card.cmc }}</td>
-                    </tr>
-                  </tbody>
-                </v-simple-table>
-              </v-col>
-        </v-card>
+                <template v-slot:placeholder>
+                  <v-row
+                    class="fill-height ma-0"
+                    align="center"
+                    justify="center">
+                      <v-progress-circular
+                      indeterminate
+                      color="grey lighten-5"/>
+                  </v-row>
+                </template>
+              </v-img>
+            </v-col>
+            <v-col>
+              <v-simple-table>
+                <tbody>
+                  <tr>
+                    <td>Title</td>
+                    <td>{{ card.name }}</td>
+                  </tr>
+                  <tr>
+                    <td>Color</td>
+                    <td v-for="row in card.colors" v-bind:key="row">
+                      <img
+                      :src="getColor(row)"
+                      v-bind:alt="row"
+                      height="30"
+                      width="30"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Type</td>
+                    <td>{{ card.type }}</td>
+                  </tr>
+                  <tr>
+                    <td>Mana cost</td>
+                    <td>{{ card.cmc }}</td>
+                  </tr>
+                </tbody>
+              </v-simple-table>
+            </v-col>
+          </v-card>
         </v-col>
-        <v-col :col="10">
-            <v-card height="40%" width="100%">
-              <div align="center" justify="center">
-                <GChart :data="Gauges" type="Gauge" :settings="{ packages: ['gauge'] }"/>
-              </div>
-            </v-card>
-          <v-row>
-            <v-col>
-              <v-card height="138%">
-                <h1 align="center" justify="center">Ratio Power/Toughness</h1>
-                <GChart :data="PieRatioAttDef" type="PieChart"/>
-              </v-card>
-            </v-col>
-            <v-col>
-              <v-card height="138%">
-                <h1 align="center" justify="center">Ratio Color</h1>
-                <GChart :data="PieRatioColor" type="PieChart"/>
-              </v-card>
-            </v-col>
-          </v-row>
+        <v-col cols="12" xs="6" sm="8" lg="9" align="center" justify="center">
+          <v-container style="padding-top:0px">
+            <v-row>
+              <v-col style="padding-top:0px">
+                <v-card align="center" align-content="center" justify="center">
+                  <v-col cols="12">
+                    <GChart align="center" :data="gauges" type="Gauge" :settings="{ packages: ['gauge'] }"/>
+                  </v-col>
+                </v-card>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="12" lg="6">
+                <v-card width="100%">
+                  <h1>Ratio power/toughness</h1>
+                  <GChart :data="PieRatioAttDef" type="PieChart"/>
+                </v-card>
+              </v-col>
+              <v-col cols="12" lg="6">
+                <v-card>
+                  <h1>Ratio color</h1>
+                  <GChart :data="pieRatioColor" type="PieChart"/>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
         </v-col>
       </v-row>
       <v-row>
@@ -113,15 +119,15 @@
         </v-col>
       </v-row>
       <v-btn
-      absolute
-      style="margin-top: 50px"
-      dark
-      fab
-      top
-      big
-      right
-      color="primary"
-      @click="initDeckDialog(card)">
+        absolute
+        style="margin-top: 50px"
+        dark
+        fab
+        top
+        big
+        right
+        color="primary"
+        @click="initDeckDialog(card)">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-container>
@@ -142,26 +148,30 @@ export default {
       default: () => { return { id: false } }
     }
   },
-  data () {
-    return {
-      Gauges: [['Label', 'Value'],
-        ['Mana Cost', this.card.cmc],
-        ['Power', this.card.power],
-        ['Toughness', this.card.toughness]
-      ],
-      PieRatioAttDef: [],
-      PieRatioColor: []
-
-    }
-  },
-  mounted () {
-    this.setStats()
-  },
+  data: () => ({
+    gauges: [['Label', 'Value'],
+      ['Mana Cost', 0],
+      ['Power', 0],
+      ['Toughness', 0]],
+    PieRatioAttDef: [],
+    pieRatioColor: []
+  }),
   created: async function () {
     if (!this.card.id) {
       await mtg.card.where({ id: this.$route.query.cardId }).then(cards => {
         this.card = cards[0]
+        this.gauges = [['Label', 'Value'],
+          ['Mana Cost', this.card.cmc],
+          ['Power', this.card.power],
+          ['Toughness', this.card.toughness]]
+        this.setStats()
       })
+    } else {
+      this.gauges = [['Label', 'Value'],
+        ['Mana Cost', this.card.cmc],
+        ['Power', this.card.power],
+        ['Toughness', this.card.toughness]]
+      this.setStats()
     }
   },
   methods: {
@@ -176,7 +186,7 @@ export default {
       return dictionnary[color]
     },
     initStats () {
-      this.PieRatioColor = [
+      this.pieRatioColor = [
         ['Colors', 'Rate'],
         ['Red', 0],
         ['Black', 0],
@@ -197,19 +207,19 @@ export default {
     updateColor (color) {
       switch (color) {
         case 'White':
-          this.PieRatioColor[4][1] += 1
+          this.pieRatioColor[4][1] += 1
           break
         case 'Red':
-          this.PieRatioColor[1][1] += 1
+          this.pieRatioColor[1][1] += 1
           break
         case 'Black':
-          this.PieRatioColor[2][1] += 1
+          this.pieRatioColor[2][1] += 1
           break
         case 'Blue':
-          this.PieRatioColor[5][1] += 1
+          this.pieRatioColor[5][1] += 1
           break
         case 'Green':
-          this.PieRatioColor[3][1] += 1
+          this.pieRatioColor[3][1] += 1
           break
         default:
           break
