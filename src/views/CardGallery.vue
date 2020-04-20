@@ -1,45 +1,43 @@
 <template>
-  <div>
+  <v-container>
     <v-row>
-      <v-card
-        v-for="card in gallery.cards"
-        v-bind:key="card.key"
-      >
-        <v-container>
-            <v-row justify="space-between">
-              <v-col cols="auto">
-                <v-img
-                  :src="card.picture"
-                />
-              </v-col>
-
-              <v-col
-                cols="auto"
-                class="text-center pl-0"
-              >
-                <v-row
-                  class="flex-column ma-0 fill-height"
-                  justify="center"
-                >
-                </v-row>
-              </v-col>
-            </v-row>
-          </v-container>
-      </v-card>
+      <v-col>
+        <h1>My favorites</h1>
+      </v-col>
     </v-row>
-  </div>
+    <v-row v-if="getFavorites().length">
+      <v-col cols="12">
+        <h2>No favorite cards yet ?</h2>
+      </v-col>
+      <v-col cols="12">
+        <h3>Don't worry, you'll find some soon ! :)</h3>
+      </v-col>
+      <v-col cols="12">
+        <h3>
+          Why not try now ?
+          <a @click="$router.push({ name : 'Home'})">
+            Let the magic happen !
+          </a>
+        </h3>
+      </v-col>
+    </v-row>
+    <CardGrid :cards="getFavorites()"/>
+    </v-container>
 </template>
 
 <script>
-import router from '@/router'
+import { mapGetters } from 'vuex'
+import CardGrid from '@/components/CardGrid.vue'
+
 export default {
-  mounted(){
-      this.gallery = state.gallery
+  name: 'CardGallery',
+  data: () => ({
+  }),
+  methods: {
+    ...mapGetters('favorites', ['getFavorites'])
   },
-  data(){
-    return {
-        gallery: null
-    }
+  components: {
+    CardGrid
   }
 }
 </script>

@@ -54,7 +54,7 @@
           <v-list-item-icon>
             <v-icon>mdi-image</v-icon>
           </v-list-item-icon>
-          <v-list-item-title @click="$router.push({ name : 'Gallery'})">Ma galerie</v-list-item-title>
+          <v-list-item-title @click="$router.push({ name : 'Gallery'})">My gallery</v-list-item-title>
         </v-list-item>
         <v-list-item link>
           <v-list-item-icon>
@@ -89,10 +89,12 @@ export default {
   }),
   methods: {
     ...mapGetters(['getPendingCard', 'isDeckDialogAsked']),
-    ...mapActions('decks', ['fetchDecks'])
+    ...mapActions('decks', ['fetchDecks']),
+    ...mapActions('favorites', ['fetchFavorites'])
   },
   mounted: function () {
     this.fetchDecks()
+    this.fetchFavorites()
   },
   components: {
     DeckDialog

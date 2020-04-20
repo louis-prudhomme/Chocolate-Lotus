@@ -5,6 +5,7 @@ import SearchCard from '@/views/SearchCard.vue'
 import Display from '@/views/DisplayCard.vue'
 import Decks from '@/views/DisplayDecks.vue'
 import Deck from '@/views/DisplayDeck.vue'
+import Gallery from '@/views/CardGallery.vue'
 import DeckDock from '@/views/DeckDock.vue'
 
 Vue.use(VueRouter)
@@ -46,7 +47,8 @@ const routes = [
   },
   {
     path: '/gallery',
-    name: 'Gallery'
+    name: 'Gallery',
+    component: Gallery
   }
 ]
 

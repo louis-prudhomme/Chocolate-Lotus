@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import decksStore from '@/store/modules/decks'
+import favoritesStore from '@/store/modules/favorites'
 
 Vue.use(Vuex)
 
@@ -26,6 +27,7 @@ export default new Vuex.Store({
     getPendingCard: state => state.pendingCard
   },
   modules: {
-    decks: decksStore
+    decks: decksStore,
+    favorites: favoritesStore
   }
 })

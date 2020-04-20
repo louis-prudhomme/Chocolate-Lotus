@@ -30,8 +30,13 @@
             <v-card-subtitle>{{ card.type }}</v-card-subtitle>
             <v-card-actions>
                 <v-btn
+                text
                 color="primary"
-                @click="initDeckDialog(card)">Add to deck</v-btn>
+                @click="initDeckDialog(card)">+ deck</v-btn>
+                <v-btn
+                text
+                color="secondary"
+                @click="addToFavorites(card)">+ favorites</v-btn>
             </v-card-actions>
         </v-card>
     </v-col>
@@ -44,7 +49,11 @@ export default {
   props: ['card'],
   data: () => ({}),
   methods: {
-    ...mapActions(['initDeckDialog'])
+    ...mapActions(['initDeckDialog']),
+    ...mapActions('favorites', ['addFavorite']),
+    addToFavorites: function (card) {
+      this.addFavorite(card)
+    }
   }
 }
 </script>
