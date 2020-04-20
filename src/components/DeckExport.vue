@@ -30,7 +30,7 @@
         rows="4"
         no-resize
         v-model="this.export"
-        :disabled="!getDecks().length"/>
+        :disabled="!decksToExport().length"/>
       </v-col>
     </v-row>
   </v-container>
@@ -45,7 +45,7 @@ export default {
     selectedDecks: []
   }),
   computed: {
-    export: function () { return this.getDecks().length ? this.serialize() : 'No decks to export.' }
+    export: function () { return this.decksToExport().length ? this.serialize() : 'No decks to export.' }
   },
   mounted: function () {
     this.$nextTick(function () {
