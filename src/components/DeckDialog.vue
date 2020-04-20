@@ -1,5 +1,5 @@
 <template>
-  <v-dialog persistent v-model="displayed" scrollable max-width="300px">
+  <v-dialog persistent v-model="displayed" scrollable max-width="500px">
     <v-card>
       <v-card-title>Select deck</v-card-title>
 
@@ -17,7 +17,6 @@
       </v-card-text>
 
       <v-divider />
-
       <v-card-actions>
         <v-btn color="primary" text @click="resetDeckDialog">Close</v-btn>
         <v-btn color="primary" text @click="addDeck" :disabled="!isSavePossible"
@@ -28,13 +27,15 @@
           new
         </v-btn>
       </v-card-actions>
+
       <v-expand-transition>
         <div v-show="show">
+          <v-divider></v-divider>
+          <v-card-title>New deck</v-card-title>
           <v-divider></v-divider>
           <v-card-text>
             <v-col cols="12">
               <v-text-field
-                label="New deck"
                 v-model="newDeck"
                 placeholder="New deck name"
                 @input="checkDeckName()"
@@ -44,26 +45,29 @@
 
             <v-container class="py-0">
               <v-row align="center" justify="start">
-                <v-col
-                  v-for="(selection,i) in keywordsAdded"
-                  :key="selection"
-                  class="shrink"
-                >
-                  <v-chip
-                    close
-                    @click:close="keywordsAdded.splice(i, 1)"
+                <template>
+                  <v-combobox
+                    v-model="keywordsAdded"
+                    :items="possibleTags"
+                    chips
+                    clearable
+                    label="Keywords"
+                    multiple
+                    solo
                   >
-                    {{ selection }}
-                  </v-chip>
-                </v-col>
-              <!--enter a new keyword-->
-              <v-text-field
-                v-model="newKeyWord"
-                placeholder="New keyword"
-              />
-              <v-btn @click="keywordsAdded.push(newKeyWord); newKeyWord = ''">
-                add
-              </v-btn>
+                  <template v-slot:selection="{ attrs, item, select, selected }">
+                    <v-chip
+                      v-bind="attrs"
+                      :input-value="selected"
+                      close
+                      @click="keywordsAdded.push(newKeyWord); newKeyWord = ''"
+                      @click:close="keywordsAdded.splice(keywordsAdded.indexOf(item), 1)"
+                    >
+                      <strong>{{ item }}</strong>&nbsp;
+                    </v-chip>
+                  </template>
+                  </v-combobox>
+                </template>
               </v-row>
             </v-container>
           </v-card-text>
@@ -83,7 +87,8 @@ export default {
     selectedDecks: [],
     isSavePossible: true,
     keywordsAdded: [],
-    newKeyWord: null
+    newKeyWord: null,
+    possibleTags: ['Starter', 'Dragon', 'Lotus']
   }),
   props: ['displayed', 'pendingCard'],
   methods: {
