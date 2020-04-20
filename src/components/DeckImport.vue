@@ -20,12 +20,16 @@
               </ul>
             </v-col>
         </v-row>
+        <v-row>
+          <v-switch
+          label="Replace existing decks ?"
+          v-model="replace"/>
+        </v-row>
         <v-row v-if="!!input">
             <p>If everything looks right, hit it !</p>
         </v-row>
         <v-row>
             <v-btn
-            type="submit"
             :disabled="!(input && valid)"
             @click="importDecks()"
             color="primary">Import !</v-btn>
@@ -43,13 +47,16 @@ export default {
     deserialized: {},
     logImport: '',
     logDecks: [],
-    valid: false
+    valid: false,
+    replace: false
   }),
   methods: {
     ...mapGetters('decks', ['getDecks']),
     ...mapActions('decks', ['napalm', 'createDeck']),
     importDecks: function () {
-      this.napalm()
+      if (this.replace) {
+        this.napalm()
+      }
       this.deserialized.forEach(deck => this.createDeck(deck))
     },
     deserialize: function () {
