@@ -4,17 +4,17 @@
     <v-form @submit.prevent="search">
       <v-container>
         <v-row align="center"
-        class="text-center">
+          class="text-center">
             <v-col cols="12" sm="9" md="10">
                 <v-text-field
-                v-model="query"
-                clearable
-                autofocus
-                label="Search a card here"/>
+                  v-model="query"
+                  clearable
+                  autofocus
+                  label="Search a card here"/>
             </v-col>
             <v-col cols="12" sm="3" md="2">
               <v-btn color="primary"
-              @click="search">Search !</v-btn>
+                @click="search">Search !</v-btn>
             </v-col>
         </v-row>
       </v-container>

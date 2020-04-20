@@ -32,8 +32,7 @@
         <h1>Cards : </h1>
         <v-card class="d-inline-block mx-auto"
           v-for="card in deck.cards"
-          v-bind:key="card.key"
-        >
+          v-bind:key="card.key">
           <v-container>
             <v-row justify="space-between">
               <v-col cols="auto">

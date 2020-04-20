@@ -17,11 +17,13 @@
       </v-card-text>
 
       <v-divider />
+
       <v-card-actions>
         <v-btn color="primary" text @click="resetDeckDialog">Close</v-btn>
-        <v-btn color="primary" text @click="addDeck" :disabled="!isSavePossible"
-          >Save</v-btn
-        >
+        <v-btn color="primary"
+        text @click="addDeck"
+        :disabled="!isSavePossible">Save</v-btn>
+
         <v-btn icon @click="show = !show">
           <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
           new
@@ -53,16 +55,16 @@
                     clearable
                     label="Keywords"
                     multiple
-                    solo
-                  >
+                    solo>
+
                   <template v-slot:selection="{ attrs, item, select, selected }">
                     <v-chip
                       v-bind="attrs"
                       :input-value="selected"
                       close
                       @click="keywordsAdded.push(newKeyWord); newKeyWord = ''"
-                      @click:close="keywordsAdded.splice(keywordsAdded.indexOf(item), 1)"
-                    >
+                      @click:close="keywordsAdded.splice(keywordsAdded.indexOf(item), 1)">
+
                       <strong>{{ item }}</strong>&nbsp;
                     </v-chip>
                   </template>

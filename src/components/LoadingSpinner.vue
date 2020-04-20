@@ -1,13 +1,13 @@
 <template>
     <!-- Loading spinner -->
   <v-row
-  v-if="displayed"
-  class="text-center">
+    v-if="displayed"
+    class="text-center">
     <v-col cols="12">
         <v-progress-circular
-        color="primary"
-        indeterminate
-        size="128"/>
+          color="primary"
+          indeterminate
+          size="128"/>
         <v-col cols="12">
         <h1>The magic is loading…</h1>
         </v-col>

@@ -6,10 +6,10 @@
         <v-row>
             <v-col cols="12" md="6">
               <v-textarea
-              rows="4"
-              no-resize
-              v-model="input"
-              @input="deserialize()"/>
+                rows="4"
+                no-resize
+                v-model="input"
+                @input="deserialize()"/>
             </v-col>
             <v-col cols="12" md="6">
               <h2>{{ logImport }}</h2>
@@ -22,17 +22,17 @@
         </v-row>
         <v-row>
           <v-switch
-          label="Replace existing decks ?"
-          v-model="replace"/>
+            label="Replace existing decks ?"
+            v-model="replace"/>
         </v-row>
         <v-row v-if="!!input">
             <p>If everything looks right, hit it !</p>
         </v-row>
         <v-row>
             <v-btn
-            :disabled="!(input && valid)"
-            @click="importDecks()"
-            color="primary">Import !</v-btn>
+              :disabled="!(input && valid)"
+              @click="importDecks()"
+              color="primary">Import !</v-btn>
         </v-row>
     </v-container>
 </template>

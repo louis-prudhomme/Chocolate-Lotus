@@ -8,8 +8,8 @@
             <v-row align="center">
               <v-col cols="12" md="6">
                 <v-img
-                height="100%"
-                :src="card.imageUrl"/>
+                  height="100%"
+                  :src="card.imageUrl"/>
               </v-col>
               <v-col cols="12" md="6">
                 <v-simple-table>
@@ -22,10 +22,10 @@
                       <td>Color</td>
                       <td v-for="row in card.colors" v-bind:key="row">
                         <img
-                        :src="getColor(row)"
-                        v-bind:alt="row"
-                        height="30"
-                        width="30"/>
+                          :src="getColor(row)"
+                          v-bind:alt="row"
+                          height="30"
+                          width="30"/>
                       </td>
                     </tr>
                     <tr>
@@ -60,9 +60,9 @@
         <v-col cols="12">
           <v-timeline>
             <v-timeline-item
-            color="primary"
-            fill-dot
-            v-for="rule in card.rulings" v-bind:key="rule.date + rule.text.length">
+              color="primary"
+              fill-dot
+              v-for="rule in card.rulings" v-bind:key="rule.date + rule.text.length">
               <v-card width="700">
                 <v-card-title class="primary">
                   <h2 class="display-1 white--text font-weight-light">{{ rule.date }}</h2>
@@ -82,29 +82,29 @@
       </v-row>
 
       <v-btn
-      absolute
-      style="margin-top: 50px"
-      dark
-      fab
-      top
-      big
-      right
-      color="primary"
-      @click="initDeckDialog(card)">
+        absolute
+        style="margin-top: 50px"
+        dark
+        fab
+        top
+        big
+        right
+        color="primary"
+        @click="initDeckDialog(card)">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
       <v-btn
-      absolute
-      style="margin-top: 150px"
-      dark
-      fab
-      top
-      big
-      right
-      color="secondary"
-      @click="faveIt(card)">
+        absolute
+        style="margin-top: 150px"
+        dark
+        fab
+        top
+        big
+        right
+        color="secondary"
+        @click="faveIt(card)">
         <v-icon
-        :class="faved ? 'green--text' : '' ">mdi-heart</v-icon>
+          :class="faved ? 'green--text' : '' ">mdi-heart</v-icon>
       </v-btn>
     </v-container>
   </div>
