@@ -4,12 +4,15 @@
       <h1>Export</h1>
     </v-row>
     <v-row>
-      <v-col>
+      <v-col cols="12">
         <h2>Choose the decks to export</h2>
+      </v-col>
+      <v-col
+      :key="deck.name"
+      v-for="deck in getDecks()"
+      cols="6" sm="3" md="2" lg="1">
         <v-checkbox
-        v-for="deck in getDecks()"
         v-model="selectedDecks"
-        :key="deck.name"
         :label="deck.name"
         :value="deck.name"/>
       </v-col>
