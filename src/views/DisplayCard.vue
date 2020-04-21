@@ -61,7 +61,7 @@
             </v-col>
           </v-card>
         </v-col>
-        <v-col cols="12" sm="7" m="8" lg="9" align="center" justify="center" v-if="!this.givenCard.text">
+        <v-col cols="12" sm="7" m="8" lg="9" align="center" justify="center" v-if="this.givenCard.text">
           <v-container style="padding-top:0px">
             <v-row>
               <v-col style="padding-top:0px">
