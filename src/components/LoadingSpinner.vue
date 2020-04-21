@@ -12,7 +12,7 @@
         <h1>The magic is loading…</h1>
         </v-col>
         <v-col cols="12">
-        <h2>(it usually take a little time)</h2>
+        <h2>(it usually takes a little time)</h2>
         </v-col>
     </v-col>
   </v-row>

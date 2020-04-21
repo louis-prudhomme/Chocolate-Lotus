@@ -1,6 +1,8 @@
 <template>
   <div>
-    <LoadingSpinner :key="loading" :displayed="loading"/>
+    <LoadingSpinner
+    :key="!loading"
+    :displayed="loading"/>
     <v-container :key="card.id">
       <v-row>
         <v-col cols="12" sm="5" md="4" lg="3" heigth="100%">
@@ -187,12 +189,13 @@ const mtg = require('mtgsdk')
 export default {
   name: 'DisplayCard',
   props: {
-    card: {
+    givenCard: {
       type: Object,
-      default: () => { return { complete: false } }
+      default: () => { return { id: false } }
     }
   },
   data: () => ({
+    card: {},
     loading: true,
     gauges: [['Label', 'Value'],
       ['Mana Cost', 0],
@@ -201,28 +204,17 @@ export default {
     PieRatioAttDef: [],
     pieRatioColor: []
   }),
-  created: async function () {
-    if (!this.complete) {
-      await mtg.card.where({ id: this.$route.query.cardId }).then(cards => {
-        this.card = cards[0]
-        this.gauges = [['Label', 'Value'],
-          ['Mana Cost', this.card.cmc],
-          ['Power', this.card.power],
-          ['Toughness', this.card.toughness]]
-        this.setStats()
-        this.loading = false
-      })
-    } else {
-      this.loading = false
-      this.gauges = [['Label', 'Value'],
-        ['Mana Cost', this.card.cmc],
-        ['Power', this.card.power],
-        ['Toughness', this.card.toughness]]
-      this.setStats()
-    }
-  },
   computed: {
     faved: function () { return this.isFavorite()(this.card) }
+  },
+  created: async function () {
+    if (!this.givenCard.id) {
+      await mtg.card.where({ id: this.$route.query.cardId }).then(cards => {
+        this.updateCard(cards[0])
+      })
+    } else {
+      this.updateCard(this.givenCard)
+    }
   },
   methods: {
     ...mapActions(['initDeckDialog']),
@@ -283,6 +275,15 @@ export default {
         default:
           break
       }
+    },
+    updateCard (c) {
+      this.card = c
+      this.gauges = [['Label', 'Value'],
+        ['Mana Cost', this.card.cmc],
+        ['Power', this.card.power],
+        ['Toughness', this.card.toughness]]
+      this.loading = false
+      this.setStats()
     }
   },
   components: {
