@@ -36,8 +36,7 @@
               big
               right
               color="primary"
-              v-on="on"
-              @click="initDeckDialog(card)">
+              v-on="on">
                 <v-icon>mdi-eye</v-icon>
             </v-btn>
           </template>
