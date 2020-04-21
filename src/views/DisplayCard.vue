@@ -189,7 +189,7 @@ export default {
   props: {
     card: {
       type: Object,
-      default: () => { return { id: false } }
+      default: () => { return { complete: false } }
     }
   },
   data: () => ({
@@ -202,7 +202,7 @@ export default {
     pieRatioColor: []
   }),
   created: async function () {
-    if (!this.card.id) {
+    if (!this.complete) {
       await mtg.card.where({ id: this.$route.query.cardId }).then(cards => {
         this.card = cards[0]
         this.gauges = [['Label', 'Value'],

@@ -100,7 +100,7 @@ export default {
         this.updateTypes(type))
       card.colors.forEach(color =>
         this.updateColor(color))
-      this.updateMana(card.manaCost)
+      this.updateMana(card.cmc)
     },
     updateColor (color) {
       switch (color) {

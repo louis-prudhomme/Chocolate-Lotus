@@ -94,10 +94,12 @@ export default {
         key: 0,
         id: this.pendingCard.id,
         name: this.pendingCard.name,
-        picture: this.pendingCard.imageUrl,
+        imageUrl: this.pendingCard.imageUrl,
         colors: this.pendingCard.colors,
-        manaCost: this.pendingCard.cmc,
-        types: this.pendingCard.types
+        cmc: this.pendingCard.cmc,
+        types: this.pendingCard.types,
+        text: this.pendingCard.text,
+        complete: false
       }
       if (this.newDeck) {
         this.createDeck({
