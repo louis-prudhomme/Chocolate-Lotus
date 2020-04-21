@@ -1,15 +1,13 @@
 <template>
   <div>
-    <LoadingSpinner
-    :key="!loading"
-    :displayed="loading"/>
+    <LoadingSpinner :displayed="loading"/>
     <v-container :key="card.id">
       <v-row>
-        <v-col cols="12" sm="5" md="4" lg="3" heigth="100%">
+        <v-col cols="12" sm="5" md="4" lg="3">
           <v-card>
             <v-col>
               <v-img
-                height="350px"
+                height="100%"
                 lazy-src="https://www.magiclibrarities.net/rarities/alternate-4th-edition-normal-backside.jpg"
                 position="center top"
                 :src="card.imageUrl"
@@ -36,7 +34,7 @@
                   <tr>
                     <td>Colors</td>
                     <td>
-                      <span v-if="!card.colors.length">
+                      <span v-if="card.colors && !card.colors.length">
                         No colors
                       </span>
                       <span
@@ -63,7 +61,7 @@
             </v-col>
           </v-card>
         </v-col>
-        <v-col cols="12" sm="7" m="8" lg="9" align="center" justify="center">
+        <v-col cols="12" sm="7" m="8" lg="9" align="center" justify="center" v-if="!this.givenCard.text">
           <v-container style="padding-top:0px">
             <v-row>
               <v-col style="padding-top:0px">
@@ -95,7 +93,7 @@
         <v-col cols="12">
           <h1>Description</h1>
         </v-col>
-        <v-col cols="12" v-if="!card.text.length">
+        <v-col cols="12" v-if="!card.text">
           <h2>No description for this card.</h2>
         </v-col>
         <v-col cols="12">
@@ -198,12 +196,12 @@ export default {
   props: {
     givenCard: {
       type: Object,
-      default: () => { return { id: false } }
+      default: () => { return { text: false } }
     }
   },
   data: () => ({
     card: {},
-    loading: true,
+    loading: false,
     gauges: [['Label', 'Value'],
       ['Mana Cost', 0],
       ['Power', 0],
@@ -214,11 +212,16 @@ export default {
   computed: {
     faved: function () { return this.isFavorite()(this.card) }
   },
-  created: async function () {
-    if (!this.givenCard.id) {
-      await mtg.card.where({ id: this.$route.query.cardId }).then(cards => {
-        this.updateCard(cards[0])
-      })
+  created: function () {
+    if (!this.givenCard.text) {
+      this.card.colors = []
+      this.card.rulings = []
+      this.loading = true
+      mtg.card.where({ id: this.$route.query.cardId })
+        .then(cards => {
+          this.loading = false
+          this.updateCard(cards[0])
+        })
     } else {
       this.updateCard(this.givenCard)
     }
@@ -259,8 +262,7 @@ export default {
     },
     setStats () {
       this.initStats()
-      this.card.colors.forEach(color =>
-        this.updateColor(color))
+      this.card.colors.forEach(color => this.updateColor(color))
     },
     updateColor (color) {
       switch (color) {
@@ -289,7 +291,6 @@ export default {
         ['Mana Cost', this.card.cmc],
         ['Power', this.card.power],
         ['Toughness', this.card.toughness]]
-      this.loading = false
       this.setStats()
     }
   },

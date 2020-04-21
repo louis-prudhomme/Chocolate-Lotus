@@ -31,7 +31,7 @@ export default {
     onCardChosen (card) {
       router.push({
         name: 'Display',
-        params: { card: card },
+        params: { givenCard: card },
         query: { cardId: card.id }
       })
     },
