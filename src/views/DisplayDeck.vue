@@ -6,16 +6,20 @@
         <h1>{{ deck.name }}</h1>
       </v-col>
       <v-col>
-        <h2>Created the {{ deck.date }}</h2>
+        <h3>Created the {{ deck.date }}</h3>
       </v-col>
     </v-row>
-    <v-row v-if="!deck.keywords.length">
-      <h2>Tags</h2>
-      <v-chip
-        v-for="keyword in deck.keywords"
-        :key="keyword">
-          {{ keyword }}
-      </v-chip>
+    <v-row v-if="deck.keywords.length">
+      <v-col cols="2">
+        <h3>Tagged as</h3>
+      </v-col>
+      <v-col>
+        <v-chip-group column>
+          <v-chip
+            v-for="keyword in deck.keywords"
+            :key="keyword">{{ keyword }}</v-chip>
+        </v-chip-group>
+      </v-col>
     </v-row>
     <v-row>
       <v-col>
@@ -24,7 +28,9 @@
     </v-row>
     <!-- Card grid -->
     <v-row>
-      <h1>Cards</h1>
+      <v-col>
+        <h1>Cards</h1>
+      </v-col>
     </v-row>
     <CardGrid
       :cards="deck.cards"
