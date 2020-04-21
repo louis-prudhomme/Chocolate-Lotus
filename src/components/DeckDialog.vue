@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title>Select deck</v-card-title>
 
-      <v-divider />
+      <v-divider/>
 
       <v-card-text>
         <v-checkbox
@@ -12,69 +12,64 @@
           v-model="selectedDecks"
           :label="deck.name"
           :value="deck.name"
-          :disabled="deck.cards.length >= 60"
-        />
+          :disabled="deck.cards.length >= 60"/>
+
+          <v-btn
+          icon
+          style="margin-left: 12px"
+          @click="show = !show">
+            <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
+            new
+          </v-btn>
+          <v-expand-transition>
+            <div v-show="show">
+              <v-text-field
+                v-model="newDeck"
+                placeholder="New deck name"
+                @input="checkDeckName()"/>
+
+              <v-divider/>
+
+              <v-container class="py-0">
+                <v-row align="center" justify="start">
+                  <template>
+                    <v-combobox
+                      v-model="keywordsAdded"
+                      :items="possibleTags"
+                      chips
+                      clearable
+                      label="Keywords"
+                      multiple
+                      solo>
+
+                      <template v-slot:selection="{ attrs, item, select, selected }">
+                        <v-chip
+                          v-bind="attrs"
+                          :input-value="selected"
+                          close
+                          @click="keywordsAdded.push(newKeyWord); newKeyWord = ''"
+                          @click:close="keywordsAdded.splice(keywordsAdded.indexOf(item), 1)">
+
+                          <strong>{{ item }}</strong>&nbsp;
+                        </v-chip>
+                      </template>
+                    </v-combobox>
+                  </template>
+                </v-row>
+              </v-container>
+            </div>
+          </v-expand-transition>
       </v-card-text>
 
-      <v-divider />
+      <v-divider/>
 
       <v-card-actions>
+        <v-spacer/>
         <v-btn color="primary" text @click="resetDeckDialog">Close</v-btn>
         <v-btn color="primary"
         text @click="addDeck"
         :disabled="!isSavePossible">Save</v-btn>
-
-        <v-btn icon @click="show = !show">
-          <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
-          new
-        </v-btn>
       </v-card-actions>
-
-      <v-expand-transition>
-        <div v-show="show">
-          <v-divider></v-divider>
-          <v-card-title>New deck</v-card-title>
-          <v-divider></v-divider>
-          <v-card-text>
-            <v-col cols="12">
-              <v-text-field
-                v-model="newDeck"
-                placeholder="New deck name"
-                @input="checkDeckName()"
-              />
-            </v-col>
-            <v-divider />
-
-            <v-container class="py-0">
-              <v-row align="center" justify="start">
-                <template>
-                  <v-combobox
-                    v-model="keywordsAdded"
-                    :items="possibleTags"
-                    chips
-                    clearable
-                    label="Keywords"
-                    multiple
-                    solo>
-
-                  <template v-slot:selection="{ attrs, item, select, selected }">
-                    <v-chip
-                      v-bind="attrs"
-                      :input-value="selected"
-                      close
-                      @click="keywordsAdded.push(newKeyWord); newKeyWord = ''"
-                      @click:close="keywordsAdded.splice(keywordsAdded.indexOf(item), 1)">
-
-                      <strong>{{ item }}</strong>&nbsp;
-                    </v-chip>
-                  </template>
-                  </v-combobox>
-                </template>
-              </v-row>
-            </v-container>
-          </v-card-text>
-        </div>
-      </v-expand-transition>
     </v-card>
   </v-dialog>
 </template>

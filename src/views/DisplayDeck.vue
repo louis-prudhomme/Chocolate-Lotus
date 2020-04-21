@@ -54,10 +54,10 @@ export default {
   },
   created: function () {
     console.log(this.deck.name)
+    console.log(!this.deck.name)
     if (!this.deck.name) {
       this.deck = this.getDeckByName()(this.$route.query.deckName)
     }
-    console.log(this.deck)
   },
   methods: {
     ...mapActions('decks', ['deleteCard']),
