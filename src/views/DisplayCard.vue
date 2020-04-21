@@ -3,7 +3,7 @@
     <LoadingSpinner :displayed="!card.id"/>
     <v-container :key="card.id">
       <v-row>
-        <v-col cols="12" xs="6" sm="4" lg="3" heigth="100%">
+        <v-col cols="12" sm="5" md="4" lg="3" heigth="100%">
           <v-card>
             <v-col>
               <v-img
@@ -54,7 +54,7 @@
             </v-col>
           </v-card>
         </v-col>
-        <v-col cols="12" xs="6" sm="8" lg="9" align="center" justify="center">
+        <v-col cols="12" sm="7" m="8" lg="9" align="center" justify="center">
           <v-container style="padding-top:0px">
             <v-row>
               <v-col style="padding-top:0px">
@@ -86,6 +86,9 @@
         <v-col cols="12">
           <h1>Description</h1>
         </v-col>
+        <v-col cols="12" v-if="!card.text.length">
+          <h2>No description for this card.</h2>
+        </v-col>
         <v-col cols="12">
           <p>{{ card.text }}</p>
         </v-col>
@@ -94,6 +97,9 @@
       <v-row>
         <v-col cols="12">
           <h1>Rules</h1>
+        </v-col>
+        <v-col cols="12" v-if="!card.rulings.length">
+          <h2>No rules for this card.</h2>
         </v-col>
         <v-col cols="12">
           <v-timeline class="hidden-sm-and-down">
@@ -107,7 +113,7 @@
                 </v-card-title>
                 <v-container>
                   <v-row>
-                    <v-col cols="2" lg="1">
+                    <v-col cols="2" lg="2" xl="1">
                     <v-icon size="50">mdi-calendar-text</v-icon>
                     </v-col>
                     <v-col>
@@ -129,7 +135,7 @@
                 </v-card-title>
                 <v-container>
                   <v-row>
-                    <v-col cols="1">
+                    <v-col cols="2" sm="1">
                       <v-icon size="50">mdi-calendar-text</v-icon>
                     </v-col>
                     <v-col>
@@ -142,6 +148,7 @@
           </v-timeline>
         </v-col>
       </v-row>
+
       <v-btn
         absolute
         style="margin-top: 50px"

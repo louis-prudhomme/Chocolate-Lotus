@@ -1,11 +1,10 @@
 <template>
-    <v-col cols="12" sm="6" md="4" lg="3">
+    <v-col cols="12" sm="6" md="4" lg="3" xl="2"
+      justify="center"
+      align="center">
         <v-card
-          height="95%"
           raised
-          color="primary"
-          width="300px"
-          class="pa-md-4 mx-lg-auto">
+          width="300px">
           <span
             style="cursor:pointer"
             @click="$emit('card-chosen', card)">
@@ -28,7 +27,6 @@
                     </v-row>
                 </template>
               </v-img>
-              <v-divider color="#FFFFFF"/>
               <v-card-title>
                   {{ card.name }}
                   <v-spacer/>
@@ -36,11 +34,15 @@
               </v-card-title>
               <v-card-subtitle>{{ card.type }}</v-card-subtitle>
           </span>
+          <v-divider color="#FFFFFF"/>
           <v-card-actions>
-              <v-btn
+            <v-btn
                 text
-                color="primary"
-                @click="initDeckDialog(card)">Add to deck</v-btn>
+                color="secondary"
+                @click="initDeckDialog(card)">
+                <v-icon>mdi-plus</v-icon>
+                Deck
+            </v-btn>
               <v-spacer/>
               <v-btn
                 icon

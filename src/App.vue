@@ -4,7 +4,9 @@
       <div>
         <v-app-bar color="primary" dark>
           <v-app-bar-nav-icon @click="drawer = true"/>
-          <v-toolbar-title @click="$router.push({ name : 'Home'})">Chocolate Lotus</v-toolbar-title>
+          <v-toolbar-title
+            @click="$router.push({ name : 'Home'})"
+            style="cursor: pointer">Chocolate Lotus</v-toolbar-title>
           <v-spacer/>
           <v-btn icon @click="$router.push({ name: 'Home' })">
             <v-icon>mdi-magnify</v-icon>
