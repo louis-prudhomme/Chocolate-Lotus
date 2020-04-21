@@ -1,29 +1,36 @@
 <template>
   <v-container>
-        <v-row>
-          <v-col>
-            <v-card min-height="300">
-            <h1 align="center" justify="center"> Composition </h1>
-            <GChart type="PieChart" :data="chartTypes" :options="chartOptions"/>
-            </v-card>
-            <v-card min-height="300">
-              <h1 align="center" justify="center">Mana</h1>
-              <GChart type="ColumnChart" :data="chartMana" :options="chartOptions"/>
-            </v-card>
-          </v-col>
-          <v-col>
-            <v-card min-height="300">
-                <h1 align="center">Total</h1>
-                <v-col class="text-center pl-0">
-                <h1 justify="center">{{deck.cards.length}}</h1>
-                </v-col>
-            </v-card>
-            <v-card min-height="300">
-                <h1 align="center" justify="center">colors</h1>
-                <GChart type="PieChart" :data="chartColors" :options="chartOptions"/>
-            </v-card>
-          </v-col>
-        </v-row>
+    <v-row>
+      <h2>Deck's statistics</h2>
+    </v-row>
+    <v-row>
+      <v-col cols="12" sm="6" lg="3">
+        <v-card>
+          <v-card-title primary-title>Composition</v-card-title>
+          <GChart type="PieChart" :data="chartTypes" :options="chartOptions"/>
+        </v-card>
+      </v-col>
+      <v-col cols="12" sm="6" lg="3">
+        <v-card>
+          <v-card-title primary-title>Mana</v-card-title>
+          <GChart type="ColumnChart" :data="chartMana" :options="chartOptions"/>
+        </v-card>
+      </v-col>
+      <v-col cols="12" sm="6" lg="3">
+        <v-card>
+            <v-card-title primary-title>Number of cards</v-card-title>
+            <div style="height: 200px; display: flex; align-items: center; justify-content: center; font-size: xxx-large;">
+              <p color="primary">{{ deck.cards.length }}</p>
+            </div>
+        </v-card>
+      </v-col>
+      <v-col cols="12" sm="6" lg="3">
+        <v-card>
+          <v-card-title primary-title>Colors</v-card-title>
+          <GChart type="PieChart" :data="chartColors" :options="chartOptions"/>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

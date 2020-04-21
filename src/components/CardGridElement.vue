@@ -34,14 +34,21 @@
               </v-card-title>
               <v-card-subtitle>{{ card.type }}</v-card-subtitle>
           </span>
-          <v-divider color="#FFFFFF"/>
+          <v-divider color="secondary"/>
           <v-card-actions>
             <v-btn
-                text
-                color="secondary"
-                @click="initDeckDialog(card)">
-                <v-icon>mdi-plus</v-icon>
-                Deck
+              text
+              color="secondary"
+              @click="initDeckDialog(card)"
+              v-if="!deckMode">
+              <v-icon>mdi-plus</v-icon>
+              Deck
+            </v-btn>
+            <v-btn
+              icon
+              @click="$emit('card-delete', card)"
+              v-if="deckMode">
+              <v-icon color="error">mdi-minus</v-icon>
             </v-btn>
               <v-spacer/>
               <v-btn
@@ -60,7 +67,13 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'CardGridElement',
-  props: ['card'],
+  props: {
+    card: Object,
+    deckMode: {
+      type: Boolean,
+      default: false
+    }
+  },
   computed: {
     faved: function () { return this.isFavorite()(this.card) }
   },

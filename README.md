@@ -4,7 +4,7 @@ Our Vue application uses the [MTG API](https://docs.magicthegathering.io/) to di
 
 Our app allows users to search and see Magic cards and build decks with them.
 
-# Project preview 
+# Project preview
 
 [Preview](https://www.figma.com/file/P8XomF5D1JtZnmoZErAW6b/Fronty?node-id=16%3A151)
 
@@ -61,7 +61,7 @@ Always check if the project compiles and if the main functions plus what you jus
 
 When fixing a big problem, a branch **must** be created.
 
-Although the previous rule should offer protection against big bugs, shit happens. Would a big problem arise after merging into master, a fix branch should be created. 
+Although the previous rule should offer protection against big bugs, shit happens. Would a big problem arise after merging into master, a fix branch should be created.
 
 It should be named as `fix_<broken-thing>`.
 

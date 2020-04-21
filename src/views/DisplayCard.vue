@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LoadingSpinner :displayed="!card.id"/>
+    <LoadingSpinner :key="loading" :displayed="loading"/>
     <v-container :key="card.id">
       <v-row>
         <v-col cols="12" sm="5" md="4" lg="3" heigth="100%">
@@ -193,6 +193,7 @@ export default {
     }
   },
   data: () => ({
+    loading: true,
     gauges: [['Label', 'Value'],
       ['Mana Cost', 0],
       ['Power', 0],
@@ -209,8 +210,10 @@ export default {
           ['Power', this.card.power],
           ['Toughness', this.card.toughness]]
         this.setStats()
+        this.loading = false
       })
     } else {
+      this.loading = false
       this.gauges = [['Label', 'Value'],
         ['Mana Cost', this.card.cmc],
         ['Power', this.card.power],
