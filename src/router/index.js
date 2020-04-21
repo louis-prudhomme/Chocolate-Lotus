@@ -5,6 +5,7 @@ import SearchCard from '@/views/SearchCard.vue'
 import Display from '@/views/DisplayCard.vue'
 import Decks from '@/views/DisplayDecks.vue'
 import Deck from '@/views/DisplayDeck.vue'
+import Gallery from '@/views/CardGallery.vue'
 import DeckDock from '@/views/DeckDock.vue'
 
 Vue.use(VueRouter)
@@ -13,6 +14,11 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    component: SearchCard
+  },
+  {
+    path: '/search',
+    name: 'Search',
     component: SearchCard
   },
   {
@@ -43,6 +49,11 @@ const routes = [
     name: 'Deck',
     component: Deck,
     props: true
+  },
+  {
+    path: '/gallery',
+    name: 'Gallery',
+    component: Gallery
   }
 ]
 

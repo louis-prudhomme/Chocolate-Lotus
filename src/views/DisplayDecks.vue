@@ -15,13 +15,13 @@
           <v-card-title>{{ deck.name }}</v-card-title>
         </v-img>
         <v-btn
-          @click="deleteDeck(deck)"
-          icon>
+            @click="deleteDeck(deck)"
+            icon>
           <v-icon>mdi-minus</v-icon>
         </v-btn>
         <v-btn
-          @click="onDeckChosen(deck)"
-          icon>
+            @click="onDeckChosen(deck)"
+            icon>
           <v-icon>mdi-information</v-icon>
         </v-btn>
       </v-card>
@@ -32,6 +32,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import router from '@/router'
+
 export default {
   name: 'DisplayDecks',
   data: () => ({}),

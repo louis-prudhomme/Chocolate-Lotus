@@ -6,11 +6,9 @@ import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
-const EventBus = new Vue({
+export default new Vue({
   store,
   router,
   vuetify,
   render: h => h(App)
 }).$mount('#app')
-
-export default EventBus

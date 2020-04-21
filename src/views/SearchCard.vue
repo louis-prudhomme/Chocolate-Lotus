@@ -4,7 +4,8 @@
     <v-form @submit.prevent="search">
       <v-container>
         <v-row align="center"
-        class="text-center">
+          class="text-center">
+            <v-col cols="12" sm="9" md="10">
                 <v-text-field
                 v-model="query"
                 clear-icon="mdi-close-circle"
@@ -13,6 +14,11 @@
                 autofocus
                 outlined
                 label="Search a card here"/>
+            </v-col>
+            <v-col cols="12" sm="3" md="2">
+              <v-btn color="primary"
+                @click="search">Search !</v-btn>
+            </v-col>
         </v-row>
       </v-container>
     </v-form>
@@ -43,6 +49,7 @@
 <script>
 import CardGrid from '@/components/CardGrid.vue'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import router from '@/router'
 
 const mtg = require('mtgsdk')
 
@@ -54,8 +61,16 @@ export default {
     queried: false, // has a search been made before ?
     loading: false // is the card grid loading ?
   }),
+  created: function () {
+    if (!this.query && !!this.$route.query.query) {
+      this.query = this.$route.query.query
+      this.search()
+    }
+  },
   methods: {
     async search () {
+      router.push({ path: 'search', query: { query: this.query } })
+
       this.loading = true
       mtg.card.where({ name: this.query })
         .then(cards => {
