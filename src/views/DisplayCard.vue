@@ -34,13 +34,20 @@
                     <td>{{ card.name }}</td>
                   </tr>
                   <tr>
-                    <td>Color</td>
-                    <td v-for="row in card.colors" v-bind:key="row">
-                      <img
-                      :src="getColor(row)"
-                      v-bind:alt="row"
-                      height="30"
-                      width="30"/>
+                    <td>Colors</td>
+                    <td>
+                      <span v-if="!card.colors.length">
+                        No colors
+                      </span>
+                      <span
+                        v-for="row in card.colors"
+                        v-bind:key="row">
+                        <img
+                        :src="getColor(row)"
+                        v-bind:alt="row"
+                        height="30"
+                        width="30"/>
+                      </span>
                     </td>
                   </tr>
                   <tr>
@@ -68,13 +75,13 @@
               </v-col>
             </v-row>
             <v-row>
-              <v-col cols="12" lg="6">
+              <v-col cols="12" lg="6" v-if="card.power + card.toughness">
                 <v-card width="100%">
                   <h1>Ratio power/toughness</h1>
-                  <GChart :data="PieRatioAttDef" type="PieChart"/>
+                  <GChart :data="pieRatioAttDef" type="PieChart"/>
                 </v-card>
               </v-col>
-              <v-col cols="12" lg="6">
+              <v-col cols="12" lg="6" v-if="card.colors.length">
                 <v-card>
                   <h1>Ratio color</h1>
                   <GChart :data="pieRatioColor" type="PieChart"/>
@@ -201,7 +208,7 @@ export default {
       ['Mana Cost', 0],
       ['Power', 0],
       ['Toughness', 0]],
-    PieRatioAttDef: [],
+    pieRatioAttDef: [],
     pieRatioColor: []
   }),
   computed: {
@@ -244,7 +251,7 @@ export default {
         ['Green', 0],
         ['White', 0],
         ['Blue', 0]]
-      this.PieRatioAttDef = [
+      this.pieRatioAttDef = [
         ['Label', 'Value'],
         ['Power', parseInt(this.card.power)],
         ['Toughness', parseInt(this.card.toughness)]
