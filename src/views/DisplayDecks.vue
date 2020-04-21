@@ -35,12 +35,15 @@ import router from '@/router'
 
 export default {
   name: 'DisplayDecks',
-  data: () => ({}),
   methods: {
     ...mapGetters('decks', ['getDecks']),
     ...mapActions('decks', ['deleteDeck']),
     onDeckChosen: selectedDeck =>
-      router.push({ name: 'Deck', params: { deck: selectedDeck } })
+      router.push({
+        name: 'Deck',
+        params: { deck: selectedDeck },
+        query: { deckName: selectedDeck.name }
+      })
   }
 }
 </script>
