@@ -45,12 +45,12 @@
             </v-list-item-icon>
             <v-list-item-title>Import / export decks</v-list-item-title>
           </v-list-item>
-          <v-btn
-            :class="!$vuetify.theme.dark ? 'yellow--text' : '' "
-            icon
-            @click="$vuetify.theme.dark = !$vuetify.theme.dark">
-            <v-icon>mdi-lightbulb</v-icon>
-          </v-btn>
+          <v-list-item link @click="drawer = !drawer; $vuetify.theme.dark = !$vuetify.theme.dark">
+            <v-list-item-icon>
+              <v-icon :class="!$vuetify.theme.dark ? 'yellow--text' : '' ">mdi-lightbulb</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Switch theme</v-list-item-title>
+          </v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
