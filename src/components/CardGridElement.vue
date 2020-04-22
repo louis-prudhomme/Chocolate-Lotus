@@ -29,8 +29,8 @@
               </v-img>
               <v-card-title>
                   <v-tooltip bottom>
-                    <template v-slot:activator="{ on2 }">
-                      <span style="text-overflow: ellipsis;overflow: hidden;width: 180px;text-align: left;white-space: nowrap;" v-on="on2">{{ card.name }}</span>
+                    <template v-slot:activator="{ on }">
+                      <span style="text-overflow: ellipsis;overflow: hidden;width: 180px;text-align: left;white-space: nowrap;" v-on="on">{{ card.name }}</span>
                     </template>
                     <span>
                       {{ card.name }}
