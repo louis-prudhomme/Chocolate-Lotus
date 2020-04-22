@@ -145,20 +145,20 @@ export default {
       if (mana <= 1) {
         this.chartMana[1][1] += 1
       } else if (mana >= 6) {
-        this.chartMana[2][1] += 1
+        this.chartMana[6][1] += 1
       } else {
         switch (mana) {
           case 2:
-            this.chartMana[3][1] += 1
+            this.chartMana[2][1] += 1
             break
           case 3:
-            this.chartMana[4][1] += 1
+            this.chartMana[3][1] += 1
             break
           case 4:
-            this.chartMana[5][1] += 1
+            this.chartMana[4][1] += 1
             break
           case 5:
-            this.chartMana[6][1] += 1
+            this.chartMana[5][1] += 1
             break
           default:
             break
