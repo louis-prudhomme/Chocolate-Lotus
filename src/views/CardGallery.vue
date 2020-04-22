@@ -29,7 +29,7 @@
           <template v-slot:activator="{ on }">
             <v-btn
               absolute
-              style="margin-top: 50px"
+              style="margin-top: 100px"
               dark
               fab
               top

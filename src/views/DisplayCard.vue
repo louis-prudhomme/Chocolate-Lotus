@@ -91,7 +91,7 @@
           </v-container>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row v-if="!loading">
         <v-col cols="12">
           <h1>Description</h1>
         </v-col>
@@ -103,7 +103,7 @@
         </v-col>
       </v-row>
 
-      <v-row>
+      <v-row v-if="!loading">
         <v-col cols="12">
           <h1>Rules</h1>
         </v-col>
@@ -160,7 +160,8 @@
 
       <v-btn
         absolute
-        style="margin-top: 50px"
+        fixed
+        style="margin-top: 100px"
         dark
         fab
         top
@@ -172,13 +173,13 @@
       </v-btn>
       <v-btn
         absolute
-        style="margin-top: 150px"
+        fixed
+        style="margin-top: 170px"
         dark
         fab
         top
         big
         right
-        color="secondary"
         @click="faveIt(card)">
         <v-icon
           :class="faved ? 'green--text' : ''">mdi-heart</v-icon>

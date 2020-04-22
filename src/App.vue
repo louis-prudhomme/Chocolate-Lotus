@@ -2,7 +2,7 @@
   <v-app>
     <template>
       <div>
-        <v-app-bar color="primary" dark>
+        <v-app-bar color="primary" dark fixed>
           <v-app-bar-nav-icon @click="drawer = true"/>
           <v-toolbar-title
             @click="$router.push({ name : 'Home'})"
@@ -55,6 +55,7 @@
     </v-navigation-drawer>
 
     <v-content>
+      <div style="padding:50px"/>
       <router-view/>
       <DeckDialog
         :displayed="isDeckDialogAsked()"
