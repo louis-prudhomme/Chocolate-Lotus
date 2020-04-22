@@ -45,6 +45,12 @@ Development branches names **must** look like `dev_<functionality-name>`, where 
 
 As such, when you start coding something, create a `dev_somethin-you-code` branch. Then code and commit against it. Finally, when the thing is ready for production, merge your branch in `master`.
 
+## Ticketting
+
+Every commit **must** be linked to a ticket.
+
+The Trello is [here](https://trello.com/b/SypsBzSt) ; ideally, every ticket should have a commit and vice-versa.
+
 ## Testing
 
 **Never** commit without testing, even for a comment.
