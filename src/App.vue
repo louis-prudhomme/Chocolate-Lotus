@@ -20,29 +20,29 @@
         nav
         dense>
         <v-list-item-group>
-          <v-list-item link>
+          <v-list-item link @click="$router.push({ name : 'Home'})">
             <v-list-item-icon>
               <v-icon>mdi-flower</v-icon>
             </v-list-item-icon>
-            <v-list-item-title @click="$router.push({ name : 'Home'})">Home</v-list-item-title>
+            <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
-          <v-list-item link>
+          <v-list-item link @click="$router.push({ name : 'Decks'})">
             <v-list-item-icon>
               <v-icon>mdi-folder</v-icon>
             </v-list-item-icon>
-            <v-list-item-title @click="$router.push({ name : 'Decks'})">My Decks</v-list-item-title>
+            <v-list-item-title>My Decks</v-list-item-title>
           </v-list-item>
-          <v-list-item link>
+          <v-list-item link @click="$router.push({ name : 'Gallery'})">
             <v-list-item-icon>
               <v-icon>mdi-heart</v-icon>
             </v-list-item-icon>
-            <v-list-item-title @click="$router.push({ name : 'Gallery'})">My favorites gallery</v-list-item-title>
+            <v-list-item-title>My favorites gallery</v-list-item-title>
           </v-list-item>
-          <v-list-item link>
+          <v-list-item link @click="$router.push({ name : 'Dock'})">
             <v-list-item-icon>
               <v-icon>mdi-content-save</v-icon>
             </v-list-item-icon>
-            <v-list-item-title @click="$router.push({ name : 'Dock'})">Import / export decks</v-list-item-title>
+            <v-list-item-title>Import / export decks</v-list-item-title>
           </v-list-item>
           <v-btn
             :class="!$vuetify.theme.dark ? 'yellow--text' : '' "

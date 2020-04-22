@@ -26,6 +26,22 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row v-if="!getDecks().length">
+      <v-col cols="12">
+        <h2>No decks here !</h2>
+      </v-col>
+      <v-col cols="12">
+        <h3>You can create one when searching for a card :)</h3>
+      </v-col>
+      <v-col cols="12">
+        <h3>
+          <a @click="$router.push({ name: 'Home' })">
+            Do you want to build a deck ? ~
+            <v-icon color="primary">mdi-music-note</v-icon>
+          </a>
+        </h3>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
