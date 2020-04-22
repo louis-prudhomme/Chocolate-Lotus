@@ -60,7 +60,7 @@
             </v-col>
           </v-card>
         </v-col>
-        <v-col>
+        <v-col v-if="loading">
           <LoadingSpinner :displayed="loading"/>
         </v-col>
         <v-col cols="12" sm="7" m="8" lg="9" align="center" justify="center" v-if="this.card.text">
@@ -298,8 +298,6 @@ export default {
       }
     },
     updateCard (c) {
-      console.log(c)
-      console.log(this.card)
       this.card = c
       this.gauges = [['Label', 'Value'],
         ['Mana Cost', this.card.cmc],
