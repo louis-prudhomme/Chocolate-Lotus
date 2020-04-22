@@ -35,7 +35,7 @@
     <CardGrid
       :cards="deck.cards"
       :deckMode="true"
-      v-on:card-delete="deleteCard({ card: card, deck: deck})"/>
+      v-on:card-delete="onCardDelete"/>
   </v-container>
 </template>
 
@@ -53,15 +53,16 @@ export default {
     }
   },
   created: function () {
-    console.log(this.deck.name)
-    console.log(!this.deck.name)
     if (!this.deck.name) {
       this.deck = this.getDeckByName()(this.$route.query.deckName)
     }
   },
   methods: {
     ...mapActions('decks', ['deleteCard']),
-    ...mapGetters('decks', ['getDeckByName', 'getDecks'])
+    ...mapGetters('decks', ['getDeckByName', 'getDecks']),
+    onCardDelete (card) {
+      this.deleteCard({ card: card, deck: this.deck })
+    }
   },
   components: {
     Statistics,
