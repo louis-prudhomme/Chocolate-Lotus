@@ -14,8 +14,9 @@
         </v-app-bar>
       </div>
     </template>
-
-    <v-navigation-drawer v-model="drawer" absolute temporary>
+    <v-navigation-drawer
+      v-model="drawer" app
+      temporary>
       <v-list
         nav
         dense>
