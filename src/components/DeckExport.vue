@@ -1,16 +1,18 @@
 <template>
   <v-container>
     <v-row>
-      <h1>Export</h1>
+      <v-col>
+        <h1>Export</h1>
+      </v-col>
     </v-row>
-    <v-row>
+    <v-row fluid>
       <v-col cols="12">
         <h2>Choose the decks to export</h2>
       </v-col>
       <v-col
       :key="deck.name"
       v-for="deck in getDecks()"
-      cols="6" sm="3" md="2" lg="1">
+      cols="auto">
         <v-checkbox
         v-model="selectedDecks"
         :label="deck.name"

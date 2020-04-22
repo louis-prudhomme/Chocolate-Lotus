@@ -9,11 +9,13 @@
         <h3>Created the {{ deck.date }}</h3>
       </v-col>
     </v-row>
-    <v-row v-if="deck.keywords.length">
-      <v-col cols="2">
+    <v-row
+    align="center"
+    v-if="deck.keywords.length">
+      <v-col cols="auto">
         <h3>Tagged as</h3>
       </v-col>
-      <v-col>
+      <v-col cols="auto">
         <v-chip-group column>
           <v-chip
             v-for="keyword in deck.keywords"
