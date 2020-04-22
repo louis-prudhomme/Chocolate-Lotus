@@ -1,6 +1,5 @@
 <template>
   <div>
-    <LoadingSpinner :displayed="loading"/>
     <v-container :key="card.id">
       <v-row>
         <v-col cols="12" sm="5" md="4" lg="3">
@@ -61,7 +60,10 @@
             </v-col>
           </v-card>
         </v-col>
-        <v-col cols="12" sm="7" m="8" lg="9" align="center" justify="center" v-if="this.givenCard.text">
+        <v-col>
+          <LoadingSpinner :displayed="loading"/>
+        </v-col>
+        <v-col cols="12" sm="7" m="8" lg="9" align="center" justify="center" v-if="this.card.text">
           <v-container style="padding-top:0px">
             <v-row>
               <v-col style="padding-top:0px">
@@ -179,7 +181,7 @@
         color="secondary"
         @click="faveIt(card)">
         <v-icon
-          :class="faved ? 'green--text' : '' ">mdi-heart</v-icon>
+          :class="faved ? 'green--text' : ''">mdi-heart</v-icon>
       </v-btn>
     </v-container>
   </div>
@@ -196,7 +198,7 @@ export default {
   props: {
     givenCard: {
       type: Object,
-      default: () => { return { text: false } }
+      default: () => { return { id: false, text: false } }
     }
   },
   data: () => ({
@@ -213,7 +215,7 @@ export default {
     faved: function () { return this.isFavorite()(this.card) }
   },
   created: function () {
-    if (!this.givenCard.text) {
+    if (!this.givenCard.id && !this.givenCard.text) {
       this.card.colors = []
       this.card.rulings = []
       this.loading = true
@@ -222,6 +224,16 @@ export default {
           this.loading = false
           this.updateCard(cards[0])
         })
+    } else if (!this.givenCard.text) {
+      this.givenCard.colors = []
+      this.givenCard.rulings = []
+      this.loading = true
+      mtg.card.where({ id: this.$route.query.cardId })
+        .then(cards => {
+          this.loading = false
+          this.updateCard(cards[0])
+        })
+      this.updateCard(this.givenCard)
     } else {
       this.updateCard(this.givenCard)
     }
@@ -286,6 +298,8 @@ export default {
       }
     },
     updateCard (c) {
+      console.log(c)
+      console.log(this.card)
       this.card = c
       this.gauges = [['Label', 'Value'],
         ['Mana Cost', this.card.cmc],

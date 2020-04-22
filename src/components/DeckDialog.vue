@@ -98,7 +98,6 @@ export default {
         colors: this.pendingCard.colors,
         cmc: this.pendingCard.cmc,
         types: this.pendingCard.types,
-        text: this.pendingCard.text,
         complete: false
       }
       if (this.newDeck) {

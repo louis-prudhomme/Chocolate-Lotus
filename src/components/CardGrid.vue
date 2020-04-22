@@ -5,7 +5,7 @@
     <v-row>
       <CardGridElement
         v-for="card in cards"
-        :key="card.id"
+        :key="card.key ? card.id + '-' + card.key : card.id"
         :card="card"
         :deckMode="deckMode"
         v-on:card-chosen="onCardChosen"
