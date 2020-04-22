@@ -15,9 +15,9 @@
           :disabled="deck.cards.length >= 60"/>
 
           <v-btn
-          icon
-          style="margin-left: 12px"
-          @click="show = !show">
+            icon
+            style="margin-left: 12px"
+            @click="show = !show">
             <v-icon>{{ show ? "mdi-minus" : "mdi-plus" }}</v-icon>
             new
           </v-btn>
@@ -65,10 +65,10 @@
 
       <v-card-actions>
         <v-spacer/>
-        <v-btn color="primary" text @click="resetDeckDialog">Close</v-btn>
+        <v-btn color="primary" text @click="show = false; resetDeckDialog()">Close</v-btn>
         <v-btn color="primary"
-        text @click="addDeck"
-        :disabled="!isSavePossible">Save</v-btn>
+          text @click="addDeck"
+          :disabled="!isSavePossible">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -128,6 +128,7 @@ export default {
         this.selectedDecks = []
       }
       this.keywordsAdded = []
+      this.show = false
       this.resetDeckDialog()
     },
     checkDeckName () {
